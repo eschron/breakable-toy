@@ -12,8 +12,11 @@ class User < ApplicationRecord
     refresh_token: auth[:credentials][:refresh_token],
     oauth_expires_at: auth[:credentials][:expires_at]
     }
-    
+
     user.save!
     user
   end
+
+  has_many :appointments
+  has_many :physicians, through: :appointments
 end
