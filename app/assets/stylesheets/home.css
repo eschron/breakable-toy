@@ -1,0 +1,15 @@
+.homePage {
+  background-color: red;
+  height: 100%;
+  overflow: hidden;
+}
+
+.homePage .allReminders {
+  height: 200px;
+  background-color: blue;
+  overflow-y: scroll;
+}
+
+.form {
+
+}
