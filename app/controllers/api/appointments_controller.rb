@@ -1,9 +1,6 @@
 class Api::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
-  def show
-  end
-
   def index
     @appointments = Appointment.all
     render json: @appointments
@@ -17,6 +14,7 @@ class Api::AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
+        redirect_to root_path
         format.html { redirect_to root_path, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
         render_appointments
