@@ -3,7 +3,7 @@ import DateTime from 'react-datetime';
 
 const AppointmentForm = props => {
   let handleSubmit = () => {
-    {props.handleNew}
+    {props.handleNew(event)}
   }
 
   return (
@@ -28,7 +28,7 @@ const AppointmentForm = props => {
         />
       </label>
 
-      <DateTime onChange={props.handleDateChange}/>
+      <DateTime defaultValue= "MM/DD/YYYY 00:00 AM" onChange={props.handleDateChange}/>
 
       <div className="button-group">
         <input className="button" type="submit" value="Submit"/>
