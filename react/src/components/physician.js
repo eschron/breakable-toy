@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const Physician = props => {
   return (
     <div>
-      <p>Hi</p>
+      <p>{props.first_name} {props.last_name}</p>
     </div>
   );
 }
