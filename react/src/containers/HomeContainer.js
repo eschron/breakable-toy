@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormContainer from './FormContainer';
+import RemindersContainer from './RemindersContainer';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -8,6 +9,31 @@ class HomeContainer extends Component {
       allAppointments: []
     };
     this.handleNewAppointment = this.handleNewAppointment.bind(this);
+    this.getAppointments = this.getAppointments.bind(this);
+  }
+
+  getAppointments() {
+    fetch(`/api/appointments.json`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({
+        allAppointments: body,
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidMount() {
+    this.getAppointments()
   }
 
   handleNewAppointment(formPayload) {
@@ -40,9 +66,18 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <FormContainer
-        handleNewAppointment={this.handleNewAppointment}
-      />
+      <div className="homePage">
+        <div className="allReminders">
+          <RemindersContainer
+            appointments={this.state.allAppointments}
+          />
+        </div>
+        <div className="form">
+          <FormContainer
+            handleNewAppointment={this.handleNewAppointment}
+          />
+        </div>
+      </div>
     );
   }
 }
