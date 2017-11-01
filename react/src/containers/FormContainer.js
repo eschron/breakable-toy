@@ -65,6 +65,7 @@ class FormContainer extends Component {
       <div>
         {errorDiv}
         <AppointmentForm
+          allPhysicians = {this.props.allPhysicians}
           handleClearForm = {this.handleClearForm}
           handleNew = {this.handleNew}
           handleReasonChange = {this.handleReasonChange}
