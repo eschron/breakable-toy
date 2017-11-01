@@ -6,10 +6,12 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allAppointments: []
+      allAppointments: [],
+      allPhysicians: []
     };
     this.handleNewAppointment = this.handleNewAppointment.bind(this);
     this.getAppointments = this.getAppointments.bind(this);
+    this.getPhysicians = this.getPhysicians.bind(this);
   }
 
   getAppointments() {
@@ -26,7 +28,28 @@ class HomeContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({
-        allAppointments: body,
+        allAppointments: body
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  getPhysicians() {
+    fetch(`/api/physicians.json`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      console.log(body)
+      this.setState({
+        allPhysicians: body
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -34,6 +57,7 @@ class HomeContainer extends Component {
 
   componentDidMount() {
     this.getAppointments()
+    this.getPhysicians()
   }
 
   handleNewAppointment(formPayload) {
@@ -74,6 +98,7 @@ class HomeContainer extends Component {
         </div>
         <div className="form">
           <FormContainer
+            allPhysicians = {this.state.allPhysicians}
             handleNewAppointment={this.handleNewAppointment}
           />
         </div>

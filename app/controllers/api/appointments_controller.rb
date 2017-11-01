@@ -33,7 +33,7 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def render_appointments
-    render json: { appointments: Appointment.all.order(time: :desc) }
+    render json: { appointments: Appointment.all.order(time: :asc) }
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

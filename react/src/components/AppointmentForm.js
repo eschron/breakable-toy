@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DateTime from 'react-datetime';
+import SelectTile from './SelectTile';
 
 const AppointmentForm = props => {
   let handleSubmit = () => {
@@ -20,11 +21,8 @@ const AppointmentForm = props => {
 
       <label className="physician">
         <div>Physician</div>
-        <textarea
-          className="textarea"
-          name='physician'
-          type='text'
-          onChange={props.handlePhysicianChange}
+        <SelectTile
+          allPhysicians = {props.allPhysicians}
         />
       </label>
 
