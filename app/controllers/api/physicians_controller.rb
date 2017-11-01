@@ -17,15 +17,16 @@ class Api::PhysiciansController < ApplicationController
     @phone_number = params[:phone_number]
 
     @physician = Physician.new(first_name: @first_name, last_name: @last_name, office_name: @office_name, specialty: @specialty, address: @address, city: @city, state: @state, phone_number: @phone_number)
+    @alreadyExists = Physician.where(first_name: @first_name).where(last_name: @last_name).where(office_name: @office_name)
 
-    # if physicians table doesnt have this physician already
+    if @alreadyExists.length > 0
+      PhysicianList.create!(user: current_user, physician: @alreadyExists)
+      redirect_to physicians_path
+    else
       if @physician.save
-        # update physician_lists table
-      else
-
+        PhysicianList.create!(user: current_user, physician: @physician)
+        redirect_to physicians_path
       end
-    # else physicians table already has this physicians
-      # update physician_lists table
-    #end
+    end
   end
 end

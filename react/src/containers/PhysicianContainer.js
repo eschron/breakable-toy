@@ -33,6 +33,7 @@ class PhysicianContainer extends Component {
   }
 
   handleNewPhysician(formPayload) {
+    debugger
     fetch('/api/physicians', {
       credentials: 'same-origin',
       method: 'POST',
@@ -74,7 +75,7 @@ class PhysicianContainer extends Component {
         </div>
         <div className="physicianForm">
           <PhysicianFormContainer
-            handleNewPhysician = {this.state.handleNewPhysician}
+            handleNewPhysician = {this.handleNewPhysician}
           />
         </div>
       </div>

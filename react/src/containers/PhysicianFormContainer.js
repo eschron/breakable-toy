@@ -41,20 +41,18 @@ class PhysicianFormContainer extends Component {
 
   handleNew(event){
     event.preventDefault();
-    else {
-      let formPayload = {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        office_name: this.state.office_name,
-        specialty: this.state.specialty,
-        address: this.state.address,
-        city: this.state.city,
-        state: this.state.state,
-        phone_number: this.state.phone_number
-      }
-      this.props.handleNewPhysician(formPayload)
-      this.handleClearForm()
+    let formPayload = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      office_name: this.state.office_name,
+      specialty: this.state.specialty,
+      address: this.state.address,
+      city: this.state.city,
+      state: this.state.state,
+      phone_number: this.state.phone_number
     }
+    this.props.handleNewPhysician(formPayload)
+    this.handleClearForm()
   }
 
   handleFirstNameChange(event){
@@ -88,9 +86,7 @@ class PhysicianFormContainer extends Component {
     return (
       <div>
         {errorDiv}
-        <AppointmentForm
-          allPhysicians = {this.props.allPhysicians}
-          handleClearForm = {this.handleClearForm}
+        <PhysicianForm
           handleNew = {this.handleNew}
           handleFirstNameChange = {this.handleFirstNameChange}
           handleLastNameChange = {this.handleLastNameChange}
