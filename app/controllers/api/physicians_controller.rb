@@ -18,11 +18,14 @@ class Api::PhysiciansController < ApplicationController
 
     @physician = Physician.new(first_name: @first_name, last_name: @last_name, office_name: @office_name, specialty: @specialty, address: @address, city: @city, state: @state, phone_number: @phone_number)
 
-    if @physician.save
+    # if physicians table doesnt have this physician already
+      if @physician.save
+        # update physician_lists table
+      else
 
-    else
-
-    end
-
+      end
+    # else physicians table already has this physicians
+      # update physician_lists table
+    #end
   end
 end
