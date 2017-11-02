@@ -59,21 +59,16 @@ class FormContainer extends Component {
   }
 
   render() {
-    let errorDiv;
-
     return (
-      <div>
-        {errorDiv}
-        <AppointmentForm
-          allPhysicians = {this.props.allPhysicians}
-          handleClearForm = {this.handleClearForm}
-          handleNew = {this.handleNew}
-          handleReasonChange = {this.handleReasonChange}
-          handleTimeChange = {this.props.handleTimeChange}
-          handlePhysicianChange = {this.handlePhysicianChange}
-          handleDateChange={this.handleDateChange}
-        />
-      </div>
+      <AppointmentForm
+        allPhysicians = {this.props.allPhysicians}
+        handleClearForm = {this.handleClearForm}
+        handleNew = {this.handleNew}
+        handleReasonChange = {this.handleReasonChange}
+        handleTimeChange = {this.props.handleTimeChange}
+        handlePhysicianChange = {this.handlePhysicianChange}
+        handleDateChange={this.handleDateChange}
+      />
     )
   }
 }

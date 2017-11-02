@@ -10,6 +10,8 @@ gem 'omniauth-google-oauth2'
 gem 'figaro'
 
 gem 'carrierwave', '~> 1.0'
+gem 'jquery-rails'
+gem 'foundation-rails'
 
 group :development do
   gem 'listen', '~> 3.0.5'

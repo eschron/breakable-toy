@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root                            to: 'home#index'
   get 'auth/:provider/callback',  to: 'sessions#create'
   get 'logout',                   to: 'sessions#destroy'
+  get 'physicians',               to: 'physicians#index'
 
   namespace :api do
     resources :appointments, only: [:create, :index]
-    resources :physicians, only: [:index]
+    resources :physicians, only: [:create, :index]
   end
 
 end

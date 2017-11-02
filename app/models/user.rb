@@ -19,4 +19,6 @@ class User < ApplicationRecord
 
   has_many :appointments
   has_many :physicians, through: :appointments
+
+  has_many :physician_lists
 end

@@ -13,11 +13,13 @@ class RemindersContainer extends Component {
     let errorDiv;
     let allAppointments = this.props.appointments.map(appointment => {
       return (
-        <Reminder
-          name = {appointment.name}
-          time = {appointment.time}
-          reason = {appointment.reason}
-        />
+        <div className="reminder">
+          <Reminder
+            name = {appointment.name}
+            time = {appointment.time}
+            reason = {appointment.reason}
+          />
+        </div>
       )
     })
 
