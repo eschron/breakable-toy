@@ -12,6 +12,7 @@ class HomeContainer extends Component {
     this.handleNewAppointment = this.handleNewAppointment.bind(this);
     this.getAppointments = this.getAppointments.bind(this);
     this.getPhysicians = this.getPhysicians.bind(this);
+    this.complete = this.complete.bind(this);
   }
 
   getAppointments() {
@@ -92,6 +93,14 @@ class HomeContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  complete(event){
+    event.preventDefault();
+    let appointmentID = event.target.value
+    console.log(appointmentID)
+    console.log("COMPLETE")
+    
+  }
+
   render() {
     let allPhysicians;
     let allAppointments;
@@ -111,6 +120,7 @@ class HomeContainer extends Component {
             <hr/>
             <RemindersContainer
               appointments={allAppointments}
+              complete={this.complete}
             />
           </div>
         </div>
@@ -128,12 +138,14 @@ class HomeContainer extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="all-physicians-title">
-              YOUR PHYSICIANS
-            </div>
-            <hr/>
-            <div className='visited-physicians'>
-              Hiiii
+            <div className="all-physicians-container">
+              <div className="all-physicians-title">
+                YOUR PHYSICIANS
+              </div>
+              <hr/>
+              <div className='visited-physicians'>
+                Hiiii
+              </div>
             </div>
           </div>
         </div>

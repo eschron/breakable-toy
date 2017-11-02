@@ -25,8 +25,10 @@
    min-width: 200px;
  }
 
- .visited-physicians {
-   background-color: red;
+ .all-physicians-container {
+   background-color: pink;
+   padding: 10px;
+   margin: 10px;
  }
 
 .reminder {
@@ -50,7 +52,7 @@ nav {
 .reminders-container {
   background-color: red;
   padding: 20px;
-  height: 400px;
+  height: 700px;
   margin: 10px;
 }
 
