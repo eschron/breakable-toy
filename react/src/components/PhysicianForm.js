@@ -6,80 +6,88 @@ const PhysicianForm = props => {
   }
 
   return (
-    <form className="callout" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <label className="firstName">
-        <div>First Name:</div>
-        <textarea
-          className="textarea"
-          name='first_name'
-          type='text'
-          onChange={props.handleFirstNameChange}
-        />
+        <div>First Name:
+          <input
+            className="textarea"
+            name='first_name'
+            type='text'
+            onChange={props.handleFirstNameChange}
+          />
+        </div>
       </label>
       <label className="lastName">
-        <div>Last Name:</div>
-        <textarea
-          className="textarea"
-          name='last_name'
-          type='text'
-          onChange={props.handleLastNameChange}
-        />
+        <div>Last Name:
+          <input
+            className="textarea"
+            name='last_name'
+            type='text'
+            onChange={props.handleLastNameChange}
+          />
+        </div>
       </label>
       <label className="officeName">
-        <div>Office Name:</div>
-        <textarea
-          className="textarea"
-          name='office_name'
-          type='text'
-          onChange={props.handleOfficeNameChange}
-        />
+        <div>Office Name:
+          <input
+            className="textarea"
+            name='office_name'
+            type='text'
+            onChange={props.handleOfficeNameChange}
+          />
+        </div>
       </label>
       <label className="specialty">
-        <div>Specialty:</div>
-        <textarea
-          className="textarea"
-          name='specialty'
-          type='text'
-          onChange={props.handleSepecialtyChange}
-        />
+        <div>Specialty:
+          <input
+            className="textarea"
+            name='specialty'
+            type='text'
+            onChange={props.handleSepecialtyChange}
+          />
+        </div>
       </label>
       <label className="address">
-        <div>Address:</div>
-        <textarea
-          className="textarea"
-          name='address'
-          type='text'
-          onChange={props.handleAddressChange}
-        />
+        <div>Address:
+          <input
+            className="textarea"
+            name='address'
+            type='text'
+            onChange={props.handleAddressChange}
+          />
+        </div>
       </label>
       <label className="city">
-        <div>City:</div>
-        <textarea
-          className="textarea"
-          name='city'
-          type='text'
-          onChange={props.handleCityChange}
-        />
+        <div>City:
+          <input
+            className="textarea"
+            name='city'
+            type='text'
+            onChange={props.handleCityChange}
+          />
+        </div>
       </label>
       <label className="state">
-        <div>State:</div>
-        <textarea
-          className="textarea"
-          name='state'
-          type='text'
-          onChange={props.handleStateChange}
-        />
+        <div>State:
+          <input
+            className="textarea"
+            name='state'
+            type='text'
+            onChange={props.handleStateChange}
+          />
+        </div>
       </label>
       <label className="phoneNumber">
-        <div>PhoneNumber:</div>
-        <textarea
-          className="textarea"
-          name='phone_number'
-          type='text'
-          onChange={props.handlePhoneNumberChange}
-        />
+        <div>PhoneNumber:
+          <input
+            className="textarea"
+            name='phone_number'
+            type='text'
+            onChange={props.handlePhoneNumberChange}
+          />
+        </div>
       </label>
-      <div className="button-group">
+      <div>
         <input className="button" type="submit" value="Add"/>
       </div>
     </form>

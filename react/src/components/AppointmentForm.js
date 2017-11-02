@@ -6,29 +6,26 @@ const AppointmentForm = props => {
   let handleSubmit = () => {
     {props.handleNew(event)}
   }
-
   return (
-    <form className="callout" onSubmit={handleSubmit}>
-      <label className="reason">
+    <form onSubmit={handleSubmit}>
+      <label>
         <div>Reason</div>
-        <textarea
+        <input
           className="textarea"
           name='reason'
-          type='text'
+          type='textarea'
           onChange={props.handleReasonChange}
         />
       </label>
 
-      <label className="physician">
-        <div>Physician</div>
-        <SelectTile
-          allPhysicians = {props.allPhysicians}
-        />
-      </label>
+      <SelectTile
+        handlePhysicianChange={props.handlePhysicianChange}
+        allPhysicians = {props.allPhysicians}
+      />
 
       <DateTime defaultValue= "MM/DD/YYYY 00:00 AM" onChange={props.handleDateChange}/>
 
-      <div className="button-group">
+      <div>
         <input className="button" type="submit" value="Submit"/>
       </div>
     </form>

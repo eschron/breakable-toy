@@ -2,7 +2,7 @@ class Api::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def index
-    @appointments = Appointment.all.order(time: :asc)
+    @appointments = Appointment.all.where(visited: false).order(time: :asc)
     render json: @appointments
   end
 
@@ -11,7 +11,6 @@ class Api::AppointmentsController < ApplicationController
     @date = params[:date]
     @physician = Physician.find_by first_name: params[:physicianName]
     @appointment = Appointment.new(reason: @reason, time: @date, physician: @physician, user: current_user)
-
     respond_to do |format|
       if @appointment.save
         redirect_to root_path

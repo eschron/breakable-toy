@@ -11,13 +11,14 @@ class PhysiciansContainer extends Component {
 
   render() {
     let errorDiv;
+    let id = document.getElementById('app').dataset.currentuserid
     let allPhysicians = this.props.allPhysicians.map(physician => {
-      return (
-        <Physician
-          first_name = {physician.first_name}
-          last_name = {physician.last_name}
-        />
-      )
+        return (
+          <Physician
+            first_name = {physician.first_name}
+            last_name = {physician.last_name}
+          />
+        )
     })
 
     return (

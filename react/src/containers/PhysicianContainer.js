@@ -7,7 +7,8 @@ class PhysicianContainer extends Component {
     super(props);
     this.state = {
       allPhysicians: [],
-      addPhysician: false
+      addPhysician: false,
+      current_user: null
     };
     this.getPhysicians = this.getPhysicians.bind(this)
     this.handleNewPhysician = this.handleNewPhysician.bind(this)
@@ -15,7 +16,10 @@ class PhysicianContainer extends Component {
   }
 
   getPhysicians() {
-    fetch(`/api/physicians.json`)
+    fetch(`/api/physicians.json`, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' }
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -27,15 +31,15 @@ class PhysicianContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
       this.setState({
-        allPhysicians: body
+        allPhysicians: body,
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleNewPhysician(formPayload) {
-    debugger
     fetch('/api/physicians', {
       credentials: 'same-origin',
       method: 'POST',
@@ -55,7 +59,6 @@ class PhysicianContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allPhysicians: body
       });
@@ -97,10 +100,13 @@ class PhysicianContainer extends Component {
 
     return (
       <div className="physicianPage">
-        {buttonDiv}
+        <div className="buttonDiv">
+          {buttonDiv}
+        </div>
         {addPhysicianDiv}
         <div className="allPhysicians">
           <PhysiciansContainer
+            current_user = {this.state.current_user}
             allPhysicians = {this.state.allPhysicians}
           />
         </div>

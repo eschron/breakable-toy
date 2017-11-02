@@ -15,7 +15,10 @@ class HomeContainer extends Component {
   }
 
   getAppointments() {
-    fetch(`/api/appointments.json`)
+    fetch(`/api/appointments.json`, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' }
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -27,6 +30,7 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
       this.setState({
         allAppointments: body
       });
@@ -35,7 +39,10 @@ class HomeContainer extends Component {
   }
 
   getPhysicians() {
-    fetch(`/api/physicians.json`)
+    fetch(`/api/physicians.json`, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' }
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -47,6 +54,7 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
       this.setState({
         allPhysicians: body
       });
@@ -55,8 +63,8 @@ class HomeContainer extends Component {
   }
 
   componentDidMount() {
-    this.getAppointments()
-    this.getPhysicians()
+    this.getAppointments();
+    this.getPhysicians();
   }
 
   handleNewAppointment(formPayload) {
@@ -68,10 +76,8 @@ class HomeContainer extends Component {
     })
     .then(response => {
       if (response.ok) {
-        debugger
         return response;
       } else {
-        debugger
         let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
         throw(error);
@@ -79,7 +85,6 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allAppointments: body.reviews
       });
@@ -88,18 +93,49 @@ class HomeContainer extends Component {
   }
 
   render() {
+    let allPhysicians;
+    let allAppointments;
+    if (this.state.allPhysicians != null) {
+       allPhysicians = this.state.allPhysicians
+    }
+    if (this.state.allAppointments != null) {
+       allAppointments = this.state.allAppointments
+    }
     return (
-      <div className="homePage">
-        <div className="allReminders">
-          <RemindersContainer
-            appointments={this.state.allAppointments}
-          />
+      <div className="row">
+        <div className="medium-6 columns">
+          <div className='reminders-container'>
+            <div className="upcoming-title">
+              UPCOMING
+            </div>
+            <hr/>
+            <RemindersContainer
+              appointments={allAppointments}
+            />
+          </div>
         </div>
-        <div className="form">
-          <FormContainer
-            allPhysicians = {this.state.allPhysicians}
-            handleNewAppointment={this.handleNewAppointment}
-          />
+        <div className="medium-6 columns">
+          <div className="row">
+            <div className='form-container'>
+              <div className="new-appt-title">
+                NEW APPOINTMENT
+              </div>
+              <hr/>
+              <FormContainer
+                allPhysicians = {allPhysicians}
+                handleNewAppointment={this.handleNewAppointment}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="all-physicians-title">
+              YOUR PHYSICIANS
+            </div>
+            <hr/>
+            <div className='visited-physicians'>
+              Hiiii
+            </div>
+          </div>
         </div>
       </div>
     );
