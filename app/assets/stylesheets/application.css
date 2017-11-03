@@ -14,25 +14,41 @@
  *= require_self
  *= require foundation_and_overrides
  */
+ hr {
+   border-color: #69bcb8;
+ }
 
  .appointment-form {
    padding: 10px;
    /*margin: 75px;*/
    position: relative;
    /*left: 100px;*/
-   background-color: grey;
+   background-color: #B9B9B9;
    width: 25%;
    min-width: 200px;
  }
 
  .all-physicians-container {
-   background-color: pink;
+   background-color: #B9B9B9;
    padding: 10px;
+   margin: 10px;
+ }
+ .reminders-container {
+   background-color: #B9B9B9;
+   height: 700px;
    margin: 10px;
  }
 
 .reminder {
-  background-color: pink;
+  margin: 2px;
+  height: 20%;
+  background-color: white;
+}
+.upcoming-title {
+  margin: 2px;
+}
+
+.allAppointments {
 }
 
 body {
@@ -42,25 +58,18 @@ body {
 }
 
 nav {
-  background-color: #f1f1f1;
+  background-color: #333333;
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100px;
 }
 
-.reminders-container {
-  background-color: red;
-  padding: 20px;
-  height: 700px;
-  margin: 10px;
-}
-
 .form-container {
   position: relative;
   padding: 20px;
   text-align: center;
-  background-color: grey;
+  background-color: #B9B9B9;
   margin: 10px;
   min-width: 240px;
 }
@@ -70,6 +79,7 @@ nav {
   left: 100px;
   height: 100%;
   width: 100%;
+  background-color: #f7f7f7;
 }
 
 .make-red {
@@ -81,7 +91,7 @@ nav ul {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #333333;
 }
 nav ul .logo{
   display: block;
@@ -96,7 +106,7 @@ nav ul .logo{
 
 nav li a {
     display: block;
-    color: #000;
+    color: #6b6b6b;
     height: 50px;
     padding: 0;
     text-decoration: none;

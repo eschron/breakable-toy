@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def index
     @appointments = Appointment.all.where(visited: false).order(time: :asc)
@@ -11,17 +11,23 @@ class Api::AppointmentsController < ApplicationController
     @date = params[:date]
     @physician = Physician.find_by first_name: params[:physicianName]
     @appointment = Appointment.new(reason: @reason, time: @date, physician: @physician, user: current_user)
-    respond_to do |format|
-      if @appointment.save
-        redirect_to root_path
-        format.html { redirect_to root_path, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
-        render_appointments
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
+
+    if @appointment.save
+      @appointments = Appointment.all.where(visited: false).order(time: :asc)
+      render json: @appointments
+    else
+      format.html { render :new }
+      format.json { render json: @appointment.errors, status: :unprocessable_entity }
     end
+  end
+
+  def update
+    appointment = Appointment.find(params[:id])
+    if appointment.user == current_user
+      appointment.update(appointment_params)
+    end
+    @appointments = Appointment.all.where(visited: false).order(time: :asc)
+    render json: @appointments
   end
 
   private
@@ -37,6 +43,6 @@ class Api::AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:reason, :date, :physicianName)
+    params.require(:appointment).permit(:reason, :date, :physicianName, :visited)
   end
 end

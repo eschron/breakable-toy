@@ -69,6 +69,8 @@ class HomeContainer extends Component {
   }
 
   handleNewAppointment(formPayload) {
+    console.log("ON HOME CONTAINER")
+    event.preventDefault();
     fetch('/api/appointments', {
       credentials: 'same-origin',
       method: 'POST',
@@ -86,8 +88,9 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
       this.setState({
-        allAppointments: body.reviews
+        allAppointments: body
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -96,9 +99,29 @@ class HomeContainer extends Component {
   complete(event){
     event.preventDefault();
     let appointmentID = event.target.value
-    console.log(appointmentID)
-    console.log("COMPLETE")
-    
+    let updatedAppt = {visited: true}
+    fetch(`/api/appointments/${appointmentID}`, {
+      credentials: 'same-origin',
+      method:'PATCH',
+      body: JSON.stringify(updatedAppt),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({
+        allAppointments: body
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
