@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FormContainer from './FormContainer';
 import RemindersContainer from './RemindersContainer';
+import VisitedContainer from './VisitedContainer';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -98,8 +99,10 @@ class HomeContainer extends Component {
 
   complete(event){
     event.preventDefault();
+    console.log("ENTER FETCH")
     let appointmentID = event.target.value
     let updatedAppt = {visited: true}
+    debugger
     fetch(`/api/appointments/${appointmentID}`, {
       credentials: 'same-origin',
       method:'PATCH',
@@ -120,6 +123,8 @@ class HomeContainer extends Component {
       this.setState({
         allAppointments: body
       });
+      console.log("COMPLETED PATCH")
+      console.log(body)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -135,39 +140,32 @@ class HomeContainer extends Component {
     }
     return (
       <div className="row">
-        <div className="medium-6 columns">
-          <div className='reminders-container'>
-            <div className="upcoming-title">
-              UPCOMING
-            </div>
-            <hr/>
-            <RemindersContainer
-              appointments={allAppointments}
-              complete={this.complete}
-            />
-          </div>
-        </div>
-        <div className="medium-6 columns">
-          <div className="row">
-            <div className='form-container'>
-              <div className="new-appt-title">
-                NEW APPOINTMENT
+
+        <div className="row">
+          <div className="medium-6 columns">
+            <div className='reminders-container'>
+              <div className="upcoming-title">
+                UPCOMING
               </div>
               <hr/>
-              <FormContainer
-                allPhysicians = {allPhysicians}
-                handleNewAppointment={this.handleNewAppointment}
+              <RemindersContainer
+                appointments={allAppointments}
+                physicians={allPhysicians}
+                complete={this.complete}
               />
             </div>
           </div>
-          <div className="row">
-            <div className="all-physicians-container">
-              <div className="all-physicians-title">
-                YOUR PHYSICIANS
-              </div>
-              <hr/>
-              <div className='visited-physicians'>
-                Hiiii
+          <div className="medium-6 columns">
+            <div className="row">
+              <div className='form-container'>
+                <div className="new-appt-title">
+                  NEW APPOINTMENT
+                </div>
+                <hr/>
+                <FormContainer
+                  allPhysicians = {allPhysicians}
+                  handleNewAppointment={this.handleNewAppointment}
+                />
               </div>
             </div>
           </div>

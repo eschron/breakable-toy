@@ -26,8 +26,8 @@ class FormContainer extends Component {
   }
 
   handleNew(event){
+    this.handleClearForm()
     event.preventDefault();
-    console.log("IN FORM CONTAINER")
     if (this.state.reason === null) {
       this.setState({ratingErrors: 'Please select a reason.'})
     }
@@ -39,7 +39,6 @@ class FormContainer extends Component {
 
       }
       this.props.handleNewAppointment(formPayload)
-      this.handleClearForm()
     }
   }
 

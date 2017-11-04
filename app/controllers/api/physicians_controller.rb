@@ -2,9 +2,7 @@ class Api::PhysiciansController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :index]
 
   def index
-    @physicians = Physician.all
-    @physicianlist = PhysicianList.where(user: current_user)
-    @test = Physician.joins(:physician_list).where(:physician_lists => {:user_id => current_user.id})
+    @physicians = current_user.physicians
     render json: @physicians
   end
 

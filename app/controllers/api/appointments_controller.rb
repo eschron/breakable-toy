@@ -22,9 +22,9 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def update
-    appointment = Appointment.find(params[:id])
-    if appointment.user == current_user
-      appointment.update(appointment_params)
+    @appointment = Appointment.find(params[:id])
+    if @appointment.user == current_user
+      @appointment.update(appointment_params)
     end
     @appointments = Appointment.all.where(visited: false).order(time: :asc)
     render json: @appointments

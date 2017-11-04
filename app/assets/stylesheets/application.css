@@ -34,9 +34,21 @@
    margin: 10px;
  }
  .reminders-container {
+   position: relative;
+   padding: 20px;
    background-color: #B9B9B9;
    height: 700px;
    margin: 10px;
+   padding: 20px;
+ }
+ .form-container {
+   position: relative;
+   padding: 20px;
+   height: 700px;
+   text-align: center;
+   background-color: #B9B9B9;
+   margin: 10px;
+   min-width: 240px;
  }
 
 .reminder {
@@ -57,23 +69,6 @@ body {
   margin: 0;
 }
 
-nav {
-  background-color: #333333;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-}
-
-.form-container {
-  position: relative;
-  padding: 20px;
-  text-align: center;
-  background-color: #B9B9B9;
-  margin: 10px;
-  min-width: 240px;
-}
-
 #app {
   position: absolute;
   left: 100px;
@@ -84,51 +79,4 @@ nav {
 
 .make-red {
   background-color: red;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: #333333;
-}
-nav ul .logo{
-  display: block;
-  color: #000;
-  height: 50px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-nav li a {
-    display: block;
-    color: #6b6b6b;
-    height: 50px;
-    padding: 0;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-nav li:hover {
-    background-color: #555;
-    color: #fff;
-}
-
-nav li a:hover {
-    background-color: #555;
-    color: #fff;
-}
-
-.fa-fa-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 }
