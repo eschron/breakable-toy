@@ -3,11 +3,8 @@ import DateTime from 'react-datetime';
 import SelectTile from './SelectTile';
 
 const AppointmentForm = props => {
-  let handleSubmit = () => {
-    {props.handleNew(event)}
-  }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={props.handleNew}>
       <label>
         <div>Reason</div>
         <input

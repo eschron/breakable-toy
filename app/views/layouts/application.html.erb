@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title><%= content_for?(:title) ? yield(:title) : "MyMed" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -14,8 +15,10 @@
     <nav>
       <ul>
         <% if current_user %>
+          <p>MyMed</p>
           <li><%= link_to "Logout", logout_path %></li>
-          <li><%= link_to "Home", root_path %></li>
+          <li class="home-nav"><i class="fa fa-home fa-2x" aria-hidden="true"></i><%= link_to "Home", root_path %></li>
+          <li class="physicians-nav"><i class="fa fa-user-md fa-2x" aria-hidden="true"></i><%= link_to "Physicians", physicians_path %></li>
         <% end %>
       </ul>
     </nav>

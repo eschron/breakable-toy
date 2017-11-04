@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'physicians',               to: 'physicians#index'
 
   namespace :api do
-    resources :appointments, only: [:create, :index]
+    resources :appointments, only: [:create, :index, :update]
     resources :physicians, only: [:create, :index]
   end
 

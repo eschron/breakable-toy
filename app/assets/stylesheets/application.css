@@ -14,23 +14,53 @@
  *= require_self
  *= require foundation_and_overrides
  */
+ hr {
+   border-color: #69bcb8;
+ }
 
  .appointment-form {
    padding: 10px;
    /*margin: 75px;*/
    position: relative;
    /*left: 100px;*/
-   background-color: grey;
+   background-color: #B9B9B9;
    width: 25%;
    min-width: 200px;
  }
 
- .visited-physicians {
-   background-color: red;
+ .all-physicians-container {
+   background-color: #B9B9B9;
+   padding: 10px;
+   margin: 10px;
+ }
+ .reminders-container {
+   position: relative;
+   padding: 20px;
+   background-color: #B9B9B9;
+   height: 700px;
+   margin: 10px;
+   padding: 20px;
+ }
+ .form-container {
+   position: relative;
+   padding: 20px;
+   height: 700px;
+   text-align: center;
+   background-color: #B9B9B9;
+   margin: 10px;
+   min-width: 240px;
  }
 
 .reminder {
-  background-color: pink;
+  margin: 2px;
+  height: 20%;
+  background-color: white;
+}
+.upcoming-title {
+  margin: 2px;
+}
+
+.allAppointments {
 }
 
 body {
@@ -39,84 +69,14 @@ body {
   margin: 0;
 }
 
-nav {
-  background-color: #f1f1f1;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-}
-
-.reminders-container {
-  background-color: red;
-  padding: 20px;
-  height: 400px;
-  margin: 10px;
-}
-
-.form-container {
-  position: relative;
-  padding: 20px;
-  text-align: center;
-  background-color: grey;
-  margin: 10px;
-  min-width: 240px;
-}
-
 #app {
   position: absolute;
   left: 100px;
   height: 100%;
   width: 100%;
+  background-color: #f7f7f7;
 }
 
 .make-red {
   background-color: red;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-}
-nav ul .logo{
-  display: block;
-  color: #000;
-  height: 50px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-nav li a {
-    display: block;
-    color: #000;
-    height: 50px;
-    padding: 0;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-nav li:hover {
-    background-color: #555;
-    color: #fff;
-}
-
-nav li a:hover {
-    background-color: #555;
-    color: #fff;
-}
-
-.fa-fa-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 }

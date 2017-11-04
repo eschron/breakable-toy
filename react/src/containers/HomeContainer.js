@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FormContainer from './FormContainer';
 import RemindersContainer from './RemindersContainer';
+import VisitedContainer from './VisitedContainer';
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class HomeContainer extends Component {
     this.handleNewAppointment = this.handleNewAppointment.bind(this);
     this.getAppointments = this.getAppointments.bind(this);
     this.getPhysicians = this.getPhysicians.bind(this);
+    this.complete = this.complete.bind(this);
   }
 
   getAppointments() {
@@ -68,6 +70,8 @@ class HomeContainer extends Component {
   }
 
   handleNewAppointment(formPayload) {
+    console.log("ON HOME CONTAINER")
+    event.preventDefault();
     fetch('/api/appointments', {
       credentials: 'same-origin',
       method: 'POST',
@@ -85,9 +89,42 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
       this.setState({
-        allAppointments: body.reviews
+        allAppointments: body
       });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  complete(event){
+    event.preventDefault();
+    console.log("ENTER FETCH")
+    let appointmentID = event.target.value
+    let updatedAppt = {visited: true}
+    debugger
+    fetch(`/api/appointments/${appointmentID}`, {
+      credentials: 'same-origin',
+      method:'PATCH',
+      body: JSON.stringify(updatedAppt),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({
+        allAppointments: body
+      });
+      console.log("COMPLETED PATCH")
+      console.log(body)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -103,37 +140,33 @@ class HomeContainer extends Component {
     }
     return (
       <div className="row">
-        <div className="medium-6 columns">
-          <div className='reminders-container'>
-            <div className="upcoming-title">
-              UPCOMING
-            </div>
-            <hr/>
-            <RemindersContainer
-              appointments={allAppointments}
-            />
-          </div>
-        </div>
-        <div className="medium-6 columns">
-          <div className="row">
-            <div className='form-container'>
-              <div className="new-appt-title">
-                NEW APPOINTMENT
+
+        <div className="row">
+          <div className="medium-6 columns">
+            <div className='reminders-container'>
+              <div className="upcoming-title">
+                UPCOMING
               </div>
               <hr/>
-              <FormContainer
-                allPhysicians = {allPhysicians}
-                handleNewAppointment={this.handleNewAppointment}
+              <RemindersContainer
+                appointments={allAppointments}
+                physicians={allPhysicians}
+                complete={this.complete}
               />
             </div>
           </div>
-          <div className="row">
-            <div className="all-physicians-title">
-              YOUR PHYSICIANS
-            </div>
-            <hr/>
-            <div className='visited-physicians'>
-              Hiiii
+          <div className="medium-6 columns">
+            <div className="row">
+              <div className='form-container'>
+                <div className="new-appt-title">
+                  NEW APPOINTMENT
+                </div>
+                <hr/>
+                <FormContainer
+                  allPhysicians = {allPhysicians}
+                  handleNewAppointment={this.handleNewAppointment}
+                />
+              </div>
             </div>
           </div>
         </div>
