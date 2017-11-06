@@ -3,7 +3,7 @@ import FormContainer from './FormContainer';
 import RemindersContainer from './RemindersContainer';
 import VisitedContainer from './VisitedContainer';
 import PoppedOutCompleteAppointment from '../components/PoppedOutCompleteAppointment';
-import Popout from 'react-popout';
+import Modal from '../components/Modal'
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -154,18 +154,15 @@ class HomeContainer extends Component {
        allAppointments = this.state.allAppointments
     }
 
-    if(this.state.popup == true) {
-      return (
-        <Popout title='Complete Appointment' onClosing={this.complete}>
+    return (
+      <div className="row">
+        <Modal show={this.state.popup}
+          onClose={this.complete}>
           <PoppedOutCompleteAppointment
             complete={this.complete}
             handleNotesChange = {this.handleNotesChange}
           />
-        </Popout>
-      )
-    }
-    return (
-      <div className="row">
+        </Modal>
         <div className="row">
           <div className="all-phys-banner">
             <div className="all-phys-title">
