@@ -116,7 +116,8 @@ class HomeContainer extends Component {
   complete(event){
     event.preventDefault();
     let appointmentID = this.state.clickedAppointment
-    let updatedAppt = {visited: true}
+    debugger
+    let updatedAppt = {visited: true, notes: this.state.notes}
     fetch(`/api/appointments/${appointmentID}`, {
       credentials: 'same-origin',
       method:'PATCH',
@@ -136,7 +137,8 @@ class HomeContainer extends Component {
     .then(body => {
       this.setState({
         allAppointments: body,
-        popup: false
+        popup: false,
+        notes: ''
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
