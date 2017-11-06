@@ -28,11 +28,6 @@
    min-width: 200px;
  }
 
- .all-physicians-container {
-   background-color: #B9B9B9;
-   padding: 10px;
-   margin: 10px;
- }
  .reminders-container {
    position: relative;
    padding: 20px;
@@ -62,6 +57,8 @@
 
 .allAppointments {
 }
+
+
 
 body {
   width: 100%;

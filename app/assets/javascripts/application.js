@@ -15,3 +15,7 @@
 //= require jquery
 //= require foundation
 $(document).foundation();
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});

@@ -2,8 +2,10 @@ class Api::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def index
-    @appointments = Appointment.all.where(visited: false).order(time: :asc)
-    render json: @appointments
+    @appointmentsFalse = Appointment.all.where(visited: false).order(time: :asc)
+    @appointmentsTrue = Appointment.all.where(visited: true).order(time: :asc)
+    @appointmentsTrueCount = @appointmentsTrue.count
+    render json: {appointmentsFalse: @appointmentsFalse, appointmentsTrue: @appointmentsTrue, appointmentsTrueCount: @appointmentsTrueCount}
   end
 
   def create

@@ -63,6 +63,7 @@ class RemindersContainer extends Component {
             reason = {appointment.reason}
             complete = {this.props.complete}
             id = {appointment.id}
+            popout = {this.props.popout}
           />
       )
     })

@@ -31,7 +31,6 @@ class PhysicianContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allPhysicians: body,
       });
@@ -48,10 +47,8 @@ class PhysicianContainer extends Component {
     })
     .then(response => {
       if (response.ok) {
-        debugger
         return response;
       } else {
-        debugger
         let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
         throw(error);
