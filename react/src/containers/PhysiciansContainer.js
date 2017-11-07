@@ -10,7 +10,6 @@ class PhysiciansContainer extends Component {
 
 
   render() {
-    let errorDiv;
     let id = document.getElementById('app').dataset.currentuserid
     let allPhysicians = this.props.allPhysicians.map(physician => {
         return (
@@ -23,7 +22,6 @@ class PhysiciansContainer extends Component {
 
     return (
       <div>
-        {errorDiv}
         {allPhysicians}
       </div>
     )

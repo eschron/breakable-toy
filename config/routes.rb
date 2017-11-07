@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback',  to: 'sessions#create'
   get 'logout',                   to: 'sessions#destroy'
   get 'physicians',               to: 'physicians#index'
+  resources :appointments, only: [:show]
 
   namespace :api do
-    resources :appointments, only: [:create, :index, :update]
+    resources :appointments, only: [:create, :index, :update, :show]
     resources :physicians, only: [:create, :index]
   end
 

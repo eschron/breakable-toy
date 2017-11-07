@@ -7,7 +7,7 @@ import PhysicianContainer from './containers/PhysicianContainer';
 const App = props => {
   return(
     <Router history={browserHistory}>
-      <Route path='/' component={NavBar} >
+      <Route path='/'>
         <IndexRoute component={HomeContainer} />
         <Route path='/physicians' component={PhysicianContainer}/>
       </Route>

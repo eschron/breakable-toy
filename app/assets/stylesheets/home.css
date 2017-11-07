@@ -1,0 +1,53 @@
+.all-phys-banner {
+  width: 100%;
+  background-color: #F1F5F7;
+  margin: 10px;
+  height: 100px;
+}
+
+.visited {
+  width: 100%;
+  height: 50px;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.all-physician-blocks {
+  height: 50px;
+  display: inline-block;
+  margin: 2px;
+}
+
+.physician-block {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+.reminders-container {
+  position: relative;
+  background-color: #F1F5F7;
+  height: 430px;
+  overflow: scroll;
+}
+
+.title {
+  background-color: white;
+  padding: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.form-container {
+  height: 430px;
+  overflow: scroll;
+  text-align: center;
+  background-color: #B9B9B9;
+  min-width: 240px;
+}
+
+.fa.fa-calendar-check-o {
+  color: #58BFB9;
+  cursor: pointer;
+}

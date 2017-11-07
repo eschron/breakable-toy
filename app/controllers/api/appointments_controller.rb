@@ -2,8 +2,10 @@ class Api::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def index
-    @appointments = Appointment.all.where(visited: false).order(time: :asc)
-    render json: @appointments
+    @appointmentsFalse = Appointment.all.where(visited: false).order(time: :asc)
+    @appointmentsTrue = Appointment.all.where(visited: true).order(time: :asc)
+    @appointmentsTrueCount = @appointmentsTrue.count
+    render json: {appointmentsFalse: @appointmentsFalse, appointmentsTrue: @appointmentsTrue, appointmentsTrueCount: @appointmentsTrueCount}
   end
 
   def create
@@ -20,6 +22,11 @@ class Api::AppointmentsController < ApplicationController
       format.json { render json: @appointment.errors, status: :unprocessable_entity }
     end
   end
+
+  # def show
+  #   @appointment = Appointment.find(params[:id])
+  #   render json: @appointment
+  # end
 
   def update
     @appointment = Appointment.find(params[:id])
@@ -43,6 +50,6 @@ class Api::AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:reason, :date, :physicianName, :visited)
+    params.require(:appointment).permit(:reason, :date, :physicianName, :visited, :notes)
   end
 end

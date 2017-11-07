@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import FormContainer from './FormContainer';
 import RemindersContainer from './RemindersContainer';
 import VisitedContainer from './VisitedContainer';
+import PoppedOutCompleteAppointment from '../components/PoppedOutCompleteAppointment';
+import Modal from '../components/Modal'
 
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       allAppointments: [],
-      allPhysicians: []
+      allPhysicians: [],
+      popup: false,
+      clickedAppointment: null,
+      notes: ''
     };
     this.handleNewAppointment = this.handleNewAppointment.bind(this);
     this.getAppointments = this.getAppointments.bind(this);
     this.getPhysicians = this.getPhysicians.bind(this);
     this.complete = this.complete.bind(this);
+    this.popout = this.popout.bind(this);
+    this.handleNotesChange = this.handleNotesChange.bind(this);
   }
 
   getAppointments() {
@@ -34,7 +41,7 @@ class HomeContainer extends Component {
     .then(body => {
       console.log(body)
       this.setState({
-        allAppointments: body
+        allAppointments: body.appointmentsFalse
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -56,7 +63,6 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allPhysicians: body
       });
@@ -69,8 +75,19 @@ class HomeContainer extends Component {
     this.getPhysicians();
   }
 
+  popout(event) {
+    event.preventDefault();
+    this.setState({
+      clickedAppointment: event.target.value,
+      popup: true
+    });
+  }
+
+  handleNotesChange(event){
+    this.setState({notes: event.target.value})
+  }
+
   handleNewAppointment(formPayload) {
-    console.log("ON HOME CONTAINER")
     event.preventDefault();
     fetch('/api/appointments', {
       credentials: 'same-origin',
@@ -89,7 +106,6 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allAppointments: body
       });
@@ -99,10 +115,9 @@ class HomeContainer extends Component {
 
   complete(event){
     event.preventDefault();
-    console.log("ENTER FETCH")
-    let appointmentID = event.target.value
-    let updatedAppt = {visited: true}
-    debugger
+    let appointmentID = this.state.clickedAppointment
+    // debugger
+    let updatedAppt = {visited: true, notes: this.state.notes}
     fetch(`/api/appointments/${appointmentID}`, {
       credentials: 'same-origin',
       method:'PATCH',
@@ -121,10 +136,10 @@ class HomeContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({
-        allAppointments: body
+        allAppointments: body,
+        popup: false,
+        notes: ''
       });
-      console.log("COMPLETED PATCH")
-      console.log(body)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -138,35 +153,49 @@ class HomeContainer extends Component {
     if (this.state.allAppointments != null) {
        allAppointments = this.state.allAppointments
     }
+
     return (
-      <div className="row">
+      <div className='react'>
+        <div className="row">
+          <div className="all-phys-banner">
+            <div className="title">
+              ALL PHYSICIANS
+            </div>
+            <VisitedContainer
+            />
+          </div>
+          <Modal show={this.state.popup}
+            onClose={this.complete}>
+            <PoppedOutCompleteAppointment
+              complete={this.complete}
+              handleNotesChange = {this.handleNotesChange}
+            />
+          </Modal>
+        </div>
 
         <div className="row">
           <div className="medium-6 columns">
             <div className='reminders-container'>
-              <div className="upcoming-title">
+              <div className="title">
                 UPCOMING
               </div>
-              <hr/>
               <RemindersContainer
                 appointments={allAppointments}
                 physicians={allPhysicians}
                 complete={this.complete}
+                popout={this.popout}
               />
             </div>
           </div>
           <div className="medium-6 columns">
-            <div className="row">
-              <div className='form-container'>
-                <div className="new-appt-title">
-                  NEW APPOINTMENT
-                </div>
-                <hr/>
-                <FormContainer
-                  allPhysicians = {allPhysicians}
-                  handleNewAppointment={this.handleNewAppointment}
-                />
+            <div className='form-container'>
+              <div className="title">
+                NEW APPOINTMENT
               </div>
+              <FormContainer
+                allPhysicians = {allPhysicians}
+                handleNewAppointment={this.handleNewAppointment}
+              />
             </div>
           </div>
         </div>

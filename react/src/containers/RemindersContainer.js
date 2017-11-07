@@ -10,7 +10,6 @@ class RemindersContainer extends Component {
 
 
   render() {
-    let errorDiv;
     let allAppointments = this.props.appointments.map(appointment => {
 
       let date = new Date(appointment.time);
@@ -22,39 +21,80 @@ class RemindersContainer extends Component {
       let min = date.getMinutes();
       let ampm;
       let weekday;
+      let month;
 
       if (hh >= 13){
         hh = hh - 12;
-        ampm = 'pm';
+        ampm = 'PM';
+      }
+      else {
+        ampm = 'AM';
       }
 
       if (day == 0) {
-        weekday = 'Sunday';
+        weekday = 'SUN';
       }
       else if (day == 1) {
-        weekday = 'Monday';
+        weekday = 'MON';
       }
       else if (day == 2) {
-        weekday = 'Tuesday';
+        weekday = 'TUES';
       }
       else if (day == 3) {
-        weekday = 'Wednesday';
+        weekday = 'WED';
       }
       else if (day == 4) {
-        weekday = 'Thursday';
+        weekday = 'THURS';
       }
       else if (day == 5) {
-        weekday = 'Friday';
+        weekday = 'FRI';
       }
       else if (day == 6) {
-        weekday = 'Saturday';
+        weekday = 'SAT';
+      }
+
+      if (mm == 1) {
+        month = 'January';
+      }
+      else if (mm == 2) {
+        month = 'February';
+      }
+      else if (mm == 3) {
+        month = 'March';
+      }
+      else if (mm == 4) {
+        month = 'April';
+      }
+      else if (mm == 5) {
+        month = 'May';
+      }
+      else if (mm == 6) {
+        month = 'June';
+      }
+      else if (mm == 7) {
+        month = 'July';
+      }
+      else if (mm == 8) {
+        month = 'August';
+      }
+      else if (mm == 9) {
+        month = 'September';
+      }
+      else if (mm == 10) {
+        month = 'October';
+      }
+      else if (mm == 11) {
+        month = 'November';
+      }
+      else if (mm == 12) {
+        month = 'December';
       }
 
       return (
           <Reminder
             name = {appointment.name}
             dd = {dd}
-            mm = {mm}
+            month = {month}
             yyyy = {yyyy}
             weekday = {weekday}
             hh = {hh}
@@ -63,13 +103,14 @@ class RemindersContainer extends Component {
             reason = {appointment.reason}
             complete = {this.props.complete}
             id = {appointment.id}
+            popout = {this.props.popout}
           />
       )
     })
 
     return (
-      <div className="allAppointments">
-        {errorDiv}
+      // <div className="allAppointments">
+      <div>
         {allAppointments}
       </div>
     )

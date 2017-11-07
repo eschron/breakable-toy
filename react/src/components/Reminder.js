@@ -3,12 +3,21 @@ import React, { Component } from 'react';
 const Reminder = props => {
   return (
     <div className="reminder">
-      <p>{props.name}</p>
-      <p>{props.reason}</p>
-      <p>{props.mm}-{props.dd}-{props.yyyy}</p>
-      <p>{props.weekday}</p>
-      <p>{props.hh}:{props.min} {props.ampm}</p>
-      <button value={props.id} className="small button" type="button" onClick={props.complete}>Complete</button>
+      <div className='date'>
+        <div>{props.month}</div>
+        <div>{props.dd}</div>
+        <div>{props.weekday}</div>
+      </div>
+      <div className='time'>
+        <div>{props.hh}:{props.min} {props.ampm}</div>
+      </div>
+      <div className='details'>
+        <div>{props.name}</div>
+        <div>{props.reason}</div>
+      </div>
+      <div className='reminder-button'>
+        <button value={props.id} className="complete-appointment-button" type="button" onClick={props.popout}>Complete</button>
+      </div>
     </div>
   );
 }

@@ -81,11 +81,8 @@ class PhysicianFormContainer extends Component {
   }
 
   render() {
-    let errorDiv;
-
     return (
       <div>
-        {errorDiv}
         <PhysicianForm
           handleNew = {this.handleNew}
           handleFirstNameChange = {this.handleFirstNameChange}
