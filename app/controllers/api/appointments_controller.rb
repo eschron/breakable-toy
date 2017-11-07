@@ -23,6 +23,11 @@ class Api::AppointmentsController < ApplicationController
     end
   end
 
+  # def show
+  #   @appointment = Appointment.find(params[:id])
+  #   render json: @appointment
+  # end
+
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.user == current_user

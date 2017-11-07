@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :appointments, only: [:show]
 
   namespace :api do
-    resources :appointments, only: [:create, :index, :update]
+    resources :appointments, only: [:create, :index, :update, :show]
     resources :physicians, only: [:create, :index]
   end
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 const NavBar = props => {
   return(
-    <div>
+    <div className="react-nav">
       {props.children}
     </div>
   )

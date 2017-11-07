@@ -116,7 +116,7 @@ class HomeContainer extends Component {
   complete(event){
     event.preventDefault();
     let appointmentID = this.state.clickedAppointment
-    debugger
+    // debugger
     let updatedAppt = {visited: true, notes: this.state.notes}
     fetch(`/api/appointments/${appointmentID}`, {
       credentials: 'same-origin',
@@ -155,31 +155,30 @@ class HomeContainer extends Component {
     }
 
     return (
-      <div className="row">
-        <Modal show={this.state.popup}
-          onClose={this.complete}>
-          <PoppedOutCompleteAppointment
-            complete={this.complete}
-            handleNotesChange = {this.handleNotesChange}
-          />
-        </Modal>
+      <div className='react'>
         <div className="row">
           <div className="all-phys-banner">
-            <div className="all-phys-title">
+            <div className="title">
               ALL PHYSICIANS
             </div>
-            <hr/>
             <VisitedContainer
             />
           </div>
+          <Modal show={this.state.popup}
+            onClose={this.complete}>
+            <PoppedOutCompleteAppointment
+              complete={this.complete}
+              handleNotesChange = {this.handleNotesChange}
+            />
+          </Modal>
         </div>
+
         <div className="row">
           <div className="medium-6 columns">
             <div className='reminders-container'>
-              <div className="upcoming-title">
+              <div className="title">
                 UPCOMING
               </div>
-              <hr/>
               <RemindersContainer
                 appointments={allAppointments}
                 physicians={allPhysicians}
@@ -189,17 +188,14 @@ class HomeContainer extends Component {
             </div>
           </div>
           <div className="medium-6 columns">
-            <div className="row">
-              <div className='form-container'>
-                <div className="new-appt-title">
-                  NEW APPOINTMENT
-                </div>
-                <hr/>
-                <FormContainer
-                  allPhysicians = {allPhysicians}
-                  handleNewAppointment={this.handleNewAppointment}
-                />
+            <div className='form-container'>
+              <div className="title">
+                NEW APPOINTMENT
               </div>
+              <FormContainer
+                allPhysicians = {allPhysicians}
+                handleNewAppointment={this.handleNewAppointment}
+              />
             </div>
           </div>
         </div>

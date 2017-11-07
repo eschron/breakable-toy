@@ -1,5 +1,5 @@
 nav {
-  background-color: #333333;
+  background-color: #2E363E;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -20,7 +20,7 @@ nav li {
 
 nav li a {
     display: block;
-    color: #6b6b6b;
+    color: #82878C;
     height: 50px;
     padding: 0;
     text-decoration: none;
@@ -31,28 +31,25 @@ nav li a {
 }
 
 nav li:hover {
-    background-color: #555;
-    color: #fff;
+    background-color: #1C2025;
+    color: #BFC1C2;
 }
 
 nav li a:hover {
-    background-color: #555;
-    color: #fff;
+    background-color: #1C2025;
+    color: #BFC1C2;
 }
 
-.home-nav {
-  display:inline-block;
-  justify-content: center;
-  align-items: center;
+.fa.fa-home.fa-2x {
+  color: #82878C;
 }
 
-.fa {
-  justify-content: center;
-  align-items: center;
-  vertical-align:middle;
+.fa.fa-user-md.fa-2x {
+  color: #82878C;
 }
 
-.fa-fa-home {
+/*.fa {
+  color: #82878C;
   justify-content: center;
   align-items: center;
   vertical-align:middle;

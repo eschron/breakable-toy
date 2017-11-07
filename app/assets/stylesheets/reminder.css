@@ -1,0 +1,36 @@
+.reminder {
+  padding: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  height: 20%;
+  background-color: white;
+}
+
+.date {
+  width: 15%;
+  display: inline-block;
+  padding: 5px;
+}
+
+.time {
+  width: 15%;
+  display: inline-block;
+  padding: 10px;
+}
+
+.details {
+  padding: 5px;
+  width: 55%;
+  display: inline-block;
+}
+
+.reminder-button {
+  padding: 5px;
+  width: 15%;
+  display: inline-block;
+}
+
+.complete-appointment-button {
+  margin: 0;
+  padding: 3px;
+}

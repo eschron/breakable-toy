@@ -18,7 +18,8 @@ class Modal extends Component {
      left: 0,
      right: 0,
      backgroundColor: 'rgba(0,0,0,0.3)',
-     padding: 50
+     padding: 50,
+     zIndex: 100,
    };
 
    // The modal "window"
@@ -29,7 +30,7 @@ class Modal extends Component {
      minHeight: 300,
      margin: '0 auto',
      padding: 30,
-
+     zIndex: 100,
    };
 
    return (
