@@ -16,6 +16,7 @@
   height: 50px;
   display: inline-block;
   margin: 2px;
+  margin-bottom: 0px;
 }
 
 .physician-block {
@@ -33,18 +34,11 @@
 }
 
 .title {
+  color: #2F373E;
   background-color: white;
   padding: 10px;
   margin-top: 2px;
   margin-bottom: 2px;
-}
-
-.form-container {
-  height: 430px;
-  overflow: scroll;
-  text-align: center;
-  background-color: #B9B9B9;
-  min-width: 240px;
 }
 
 .fa.fa-calendar-check-o {

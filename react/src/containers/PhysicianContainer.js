@@ -8,7 +8,6 @@ class PhysicianContainer extends Component {
     this.state = {
       allPhysicians: [],
       addPhysician: false,
-      current_user: null
     };
     this.getPhysicians = this.getPhysicians.bind(this)
     this.handleNewPhysician = this.handleNewPhysician.bind(this)
@@ -96,17 +95,10 @@ class PhysicianContainer extends Component {
     }
 
     return (
-      <div className="physicianPage">
-        <div className="buttonDiv">
-          {buttonDiv}
-        </div>
-        {addPhysicianDiv}
-        <div className="allPhysicians">
-          <PhysiciansContainer
-            current_user = {this.state.current_user}
-            allPhysicians = {this.state.allPhysicians}
-          />
-        </div>
+      <div className='all-physicians'>
+        <PhysiciansContainer
+          allPhysicians = {this.state.allPhysicians}
+        />
       </div>
     );
   }

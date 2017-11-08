@@ -7,25 +7,45 @@
 }
 
 .date {
+  height: 100%;
+  color: #2F373E;
+  text-align: center;
   width: 15%;
   display: inline-block;
   padding: 5px;
+}
+
+.day {
+  font-size: 2em;
+}
+.weekday {
+  color: #D2CECB;
+}
+.month {
+  color: #A5ABA8;
 }
 
 .time {
-  width: 15%;
+  height: 100%;
+  vertical-align: top;
+  text-align: center;
+  width: 17%;
   display: inline-block;
-  padding: 10px;
+  margin-top: 43px;
+  color: #2F373E;
+  font-size: .8em;
 }
 
 .details {
-  padding: 5px;
-  width: 55%;
+  /*padding: 5px;*/
+  width: 45%;
   display: inline-block;
+  vertical-align: top;
+  margin-top: 40px;
 }
 
 .reminder-button {
-  padding: 5px;
+  padding: 10px;
   width: 15%;
   display: inline-block;
 }
@@ -33,4 +53,23 @@
 .complete-appointment-button {
   margin: 0;
   padding: 3px;
+  position: relative;
+  top: 10px;
+  left: 30px;
+  /*right: 590px;*/
+  font-size: .8em;
+  background-color: white;
+  color: #4B9C97;
+}
+
+.delete-appointment-button {
+  margin: 0;
+  padding: 3px;
+  position: relative;
+  top: 10px;
+  left: 50px;
+  /*right: 590px;*/
+  font-size: .8em;
+  background-color: white;
+  color: #af0707;
 }

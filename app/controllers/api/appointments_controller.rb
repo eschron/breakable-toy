@@ -11,6 +11,7 @@ class Api::AppointmentsController < ApplicationController
   def create
     @reason = params[:reason]
     @date = params[:date]
+    @phone_number = params[:number]
     @physician = Physician.find_by first_name: params[:physicianName]
     @appointment = Appointment.new(reason: @reason, time: @date, physician: @physician, user: current_user)
 
@@ -21,12 +22,29 @@ class Api::AppointmentsController < ApplicationController
       format.html { render :new }
       format.json { render json: @appointment.errors, status: :unprocessable_entity }
     end
+
+    # client = Twilio::REST::Client.new(
+    #     ENV["TWILIO_ACCOUNT_SID"],
+    #     ENV["TWILIO_AUTH_TOKEN"]
+    #   )
+    # binding.pry
+    #   to = @phone_number
+    #   to = '+1' + to
+    #
+    #   text_body = "Hi"
+    #
+    #
+    #   client.messages.create(
+    #     to: to,
+    #     from: "+14804709660",
+    #     body: text_body
+    #   )
   end
 
-  # def show
-  #   @appointment = Appointment.find(params[:id])
-  #   render json: @appointment
-  # end
+  def show
+    @appointment = Appointment.find(params[:id])
+    render json: @appointment
+  end
 
   def update
     @appointment = Appointment.find(params[:id])
@@ -50,6 +68,6 @@ class Api::AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:reason, :date, :physicianName, :visited, :notes)
+    params.require(:appointment).permit(:reason, :date, :physicianName, :visited, :notes, :number)
   end
 end

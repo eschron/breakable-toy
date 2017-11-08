@@ -8,10 +8,12 @@ class FormContainer extends Component {
       reason: '',
       physicianName: null,
       date: new Date(),
+      number: null
     }
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleNew = this.handleNew.bind(this);
     this.handleReasonChange = this.handleReasonChange.bind(this);
+    this.handleNumberChange = this.handleNumberChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handlePhysicianChange = this.handlePhysicianChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -22,6 +24,7 @@ class FormContainer extends Component {
       reason: '',
       physicianName: null,
       date: new Date(),
+      number: null
     })
   }
 
@@ -35,7 +38,8 @@ class FormContainer extends Component {
       let formPayload = {
         reason: this.state.reason,
         physicianName: this.state.physicianName,
-        date: this.state.date
+        date: this.state.date,
+        number: this.state.number
 
       }
       this.props.handleNewAppointment(formPayload)
@@ -44,6 +48,10 @@ class FormContainer extends Component {
 
   handleReasonChange(event){
     this.setState({reason: event.target.value})
+  }
+
+  handleNumberChange(event){
+    this.setState({number: event.target.value})
   }
 
   handleTimeChange(event) {
@@ -65,6 +73,7 @@ class FormContainer extends Component {
         handleClearForm = {this.handleClearForm}
         handleNew = {this.handleNew}
         handleReasonChange = {this.handleReasonChange}
+        handleNumberChange = {this.handleNumberChange}
         handleTimeChange = {this.props.handleTimeChange}
         handlePhysicianChange = {this.handlePhysicianChange}
         handleDateChange={this.handleDateChange}

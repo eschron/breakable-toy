@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 const VisitedAppointment = props => {
   return (
     <div>
-      // {props.date}
-      // Reason: {props.reason}
-      // Notes: {props.notes}
+      <div>Reason: {props.reason}</div>
+      <div>Notes: {props.notes}</div>
     </div>
   )
 }

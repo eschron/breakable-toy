@@ -4,13 +4,13 @@ import SelectTile from './SelectTile';
 
 const AppointmentForm = props => {
   return (
-    <form onSubmit={props.handleNew}>
+    <form className='appointment-form' onSubmit={props.handleNew}>
       <label>
-        <div>Reason</div>
         <input
-          className="textarea"
+          className="appointment-inputs"
           name='reason'
           type='textarea'
+          placeholder='Reason'
           onChange={props.handleReasonChange}
         />
       </label>

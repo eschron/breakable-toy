@@ -74,7 +74,6 @@ class PhysicianVisited extends Component {
     if (this.state.allPhysicians != null) {
        allPhysicians = this.state.allPhysicians
     }
-
     let physicianDivs = this.state.allPhysicians.map(physician => {
       return (
         <div className = 'all-physician-blocks'>

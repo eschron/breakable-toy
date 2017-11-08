@@ -13,6 +13,10 @@ gem 'carrierwave', '~> 1.0'
 gem 'jquery-rails'
 gem 'foundation-rails'
 
+# gem 'twilio-ruby', '5.0.0'
+# gem 'delayed_job_active_record'
+# gem 'daemons'
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'

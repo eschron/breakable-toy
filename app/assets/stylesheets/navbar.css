@@ -11,10 +11,13 @@ nav ul {
     margin: 0;
     padding: 0;
     width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
 }
 
 nav li {
-  align-items: center;
+  text-align: center;
   /*flex-wrap: wrap;*/
 }
 

@@ -1,4 +1,4 @@
-.physicianPage {
+/*.physicianPage {
   position: relative;
   width: 500px;
   height: 100%;
@@ -19,12 +19,13 @@
   background-color: blue;
   max-height: 300px;
   overflow-y: scroll;
-}
+}*/
 
-.allPhysicians {
+.all-physicians {
   height: 100%;
   width: 100%;
   background-color: pink
+  z-index: 5;
 }
 
 /*.physician {

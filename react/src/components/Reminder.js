@@ -4,9 +4,9 @@ const Reminder = props => {
   return (
     <div className="reminder">
       <div className='date'>
-        <div>{props.month}</div>
-        <div>{props.dd}</div>
-        <div>{props.weekday}</div>
+        <div className='month'>{props.month}</div>
+        <div className='day'>{props.dd}</div>
+        <div className='weekday'>{props.weekday}</div>
       </div>
       <div className='time'>
         <div>{props.hh}:{props.min} {props.ampm}</div>
@@ -17,6 +17,7 @@ const Reminder = props => {
       </div>
       <div className='reminder-button'>
         <button value={props.id} className="complete-appointment-button" type="button" onClick={props.popout}>Complete</button>
+        <button value={props.id} className="delete-appointment-button" type="button" onClick={props.popout}>Delete</button>
       </div>
     </div>
   );

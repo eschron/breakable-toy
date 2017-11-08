@@ -116,7 +116,6 @@ class HomeContainer extends Component {
   complete(event){
     event.preventDefault();
     let appointmentID = this.state.clickedAppointment
-    // debugger
     let updatedAppt = {visited: true, notes: this.state.notes}
     fetch(`/api/appointments/${appointmentID}`, {
       credentials: 'same-origin',

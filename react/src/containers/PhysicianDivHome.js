@@ -8,7 +8,7 @@ class PhysicianDivHome extends Component {
     this.state = {
       popup: false,
       clickedAppointment: null,
-      appointment: null
+      appointment: ''
     }
     this.popout = this.popout.bind(this);
     this.done = this.done.bind(this);
@@ -16,16 +16,13 @@ class PhysicianDivHome extends Component {
   }
 
   popout(event) {
-    debugger
     event.preventDefault();
+    let clicked = parseInt(event.target.attributes[1].value);
     this.setState({
-      clickedAppointment: event.target.value,
+      clickedAppointment: parseInt(event.target.attributes[1].value),
       popup: true
     });
-
-    console.log("SET STATE")
-    console.log(this.state.clickedAppointment)
-    this.getAppointmentObject();
+    this.getAppointmentObject(clicked);
   }
 
   done(event) {
@@ -34,28 +31,28 @@ class PhysicianDivHome extends Component {
     });
   }
 
-  getAppointmentObject() {
-    // fetch(`/api/appointments/${this.state.clickedAppointment}`, {
-    //   credentials: 'same-origin',
-    //   headers: { 'Content-Type': 'application/json' }
-    // })
-    // .then(response => {
-    //   if (response.ok) {
-    //     return response;
-    //   } else {
-    //     let errorMessage = `${response.status} (${response.statusText})`,
-    //         error = new Error(errorMessage);
-    //     throw(error);
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(body => {
-    //   console.log(body)
-    //   this.setState({
-    //     appointment: body
-    //   });
-    // })
-    // .catch(error => console.error(`Error in fetch: ${error.message}`));
+  getAppointmentObject(clicked) {
+    fetch(`/api/appointments/${clicked}`, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      console.log(body)
+      this.setState({
+        appointment: body
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
@@ -84,13 +81,14 @@ class PhysicianDivHome extends Component {
           onClose={this.done}
           complete={this.done}>
           <VisitedAppointment
-            // notes = {this.state.appointment.notes}
-            // date = {fullDate}
-            // reason = {this.state.appointment.reason}
+            notes = {this.state.appointment.notes}
+            reason = {this.state.appointment.reason}
           />
         </Modal>
         Dr. {this.props.physician.first_name} {this.props.physician.last_name}
-        {visitedAppointments}
+        <div className="visited-appointments-icons">
+          {visitedAppointments}
+        </div>
       </div>
     )
   }

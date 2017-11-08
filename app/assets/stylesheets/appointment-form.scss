@@ -1,0 +1,28 @@
+.appointment-form {
+  // background-color: red;
+  text-align: center;
+}
+
+.appointment-inputs {
+  border: 2px solid rgba(0,0,0,0.3);
+  width: 80%;
+  margin: 10px;
+  height: 38px;
+  background: none;
+  border-radius: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #fff;
+}
+
+.form-container {
+  height: 430px;
+  overflow: scroll;
+  text-align: center;
+  // background-color: #B9B9B9;
+  min-width: 240px;
+}
+
+select {
+  background-color: red;
+}

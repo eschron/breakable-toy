@@ -1,5 +1,6 @@
  .rdt {
   position: relative;
+  z-index: 0;
 }
 .rdtPicker {
   /*display: none;*/

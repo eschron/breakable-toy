@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 const Physician = props => {
+  console.log(props)
   return (
     <div className="physician">
-      <p>{props.first_name} {props.last_name}</p>
+      {props.first_name}
     </div>
   );
 }
