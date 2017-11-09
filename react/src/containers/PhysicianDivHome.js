@@ -77,7 +77,7 @@ class PhysicianDivHome extends Component {
           <span>
             <a data-tip="React-tooltip" ><i className="fa fa-calendar-check-o" onClick={this.popout} value={appointment.id} aria-hidden="true"></i></a>
             <ReactTooltip place="bottom" type="dark" effect="solid">
-              <div>{fullDate}</div>
+              {fullDate}
             </ReactTooltip>
           </span>
         )

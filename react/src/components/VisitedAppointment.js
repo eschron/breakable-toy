@@ -6,7 +6,7 @@ const VisitedAppointment = props => {
       <div>Reason: {props.reason}</div>
       <div>Notes: {props.notes}</div>
       <div>
-      <button onClick={props.onClick}>
+      <button className='visited-appt-button' onClick={props.onClick}>
         Close
       </button>
       </div>
