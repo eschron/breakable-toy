@@ -37,12 +37,6 @@ class Modal extends Component {
      <div className="backdrop" style={backdropStyle}>
        <div className="modal" style={modalStyle}>
          {this.props.children}
-
-         <div className="footer">
-           <button onClick={this.props.complete}>
-             Complete
-           </button>
-         </div>
        </div>
      </div>
    );

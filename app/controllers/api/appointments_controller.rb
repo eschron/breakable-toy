@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :update]
+  skip_before_action :verify_authenticity_token
 
   def index
     @appointmentsFalse = Appointment.all.where(visited: false).order(time: :asc)

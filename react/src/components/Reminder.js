@@ -14,6 +14,11 @@ const Reminder = props => {
       <div className='details'>
         <div>{props.name}</div>
         <div>{props.reason}</div>
+        <div className='doctor-details'>
+          <div>Dr. {props.first_name} {props.last_name}</div>
+          <div>{props.office_name}</div>
+          <div>{props.address} {props.city}, {props.state}</div>
+        </div>
       </div>
       <div className='reminder-button'>
         <button value={props.id} className="complete-appointment-button" type="button" onClick={props.popout}>Complete</button>

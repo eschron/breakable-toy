@@ -26,6 +26,7 @@ class PhysicianDivHome extends Component {
   }
 
   done(event) {
+    event.preventDefault();
     this.setState({
       popup: false
     });
@@ -83,9 +84,11 @@ class PhysicianDivHome extends Component {
           <VisitedAppointment
             notes = {this.state.appointment.notes}
             reason = {this.state.appointment.reason}
+            onClick = {this.done}
           />
         </Modal>
-        Dr. {this.props.physician.first_name} {this.props.physician.last_name}
+        <div className='physician-name'>Dr. {this.props.physician.first_name} {this.props.physician.last_name}</div>
+        <div className='physician-specialty'>{this.props.physician.specialty}</div>
         <div className="visited-appointments-icons">
           {visitedAppointments}
         </div>

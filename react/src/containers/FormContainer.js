@@ -29,7 +29,6 @@ class FormContainer extends Component {
   }
 
   handleNew(event){
-    this.handleClearForm()
     event.preventDefault();
     if (this.state.reason === null) {
       this.setState({ratingErrors: 'Please select a reason.'})
@@ -42,6 +41,7 @@ class FormContainer extends Component {
         number: this.state.number
 
       }
+      this.handleClearForm()
       this.props.handleNewAppointment(formPayload)
     }
   }

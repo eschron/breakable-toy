@@ -5,6 +5,11 @@ const VisitedAppointment = props => {
     <div>
       <div>Reason: {props.reason}</div>
       <div>Notes: {props.notes}</div>
+      <div>
+      <button onClick={props.onClick}>
+        Close
+      </button>
+      </div>
     </div>
   )
 }

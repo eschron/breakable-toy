@@ -41,7 +41,12 @@
   width: 45%;
   display: inline-block;
   vertical-align: top;
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+.doctor-details {
+  font-size: .8em;
+  color: #A5ABA8;
 }
 
 .reminder-button {

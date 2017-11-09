@@ -155,6 +155,13 @@ class HomeContainer extends Component {
 
     return (
       <div className='react'>
+        <Modal show={this.state.popup}
+          onClose={this.complete}>
+          <PoppedOutCompleteAppointment
+            complete={this.complete}
+            handleNotesChange = {this.handleNotesChange}
+          />
+        </Modal>
         <div className="row">
           <div className="all-phys-banner">
             <div className="title">
@@ -163,13 +170,6 @@ class HomeContainer extends Component {
             <VisitedContainer
             />
           </div>
-          <Modal show={this.state.popup}
-            onClose={this.complete}>
-            <PoppedOutCompleteAppointment
-              complete={this.complete}
-              handleNotesChange = {this.handleNotesChange}
-            />
-          </Modal>
         </div>
 
         <div className="row">
