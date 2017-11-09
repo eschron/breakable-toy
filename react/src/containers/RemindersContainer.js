@@ -32,9 +32,26 @@ class RemindersContainer extends Component {
     }
   }
 
-  makeReminders() {
-    let allAppointments = this.props.appointments.map(appointment => {
-      this.getPhysician(appointment);
+  makeReminders(appointments) {
+    let allAppointments = appointments.map(appointment => {
+
+      let address;
+      let city;
+      let state;
+      let first_name;
+      let last_name;
+      let office_name;
+
+      for (let i = 0; i < this.props.physicians.length; i++) {
+        if (this.props.physicians[i].id == appointment.physician_id) {
+          address = this.props.physicians[i].address
+          city = this.props.physicians[i].city
+          state = this.props.physicians[i].state
+          first_name = this.props.physicians[i].first_name
+          last_name = this.props.physicians[i].last_name
+          office_name = this.props.physicians[i].office_name
+        }
+      }
 
       let date = new Date(appointment.time);
       let dd = date.getDate();
@@ -115,26 +132,27 @@ class RemindersContainer extends Component {
       }
 
       return (
-          <Reminder
-            name = {appointment.name}
-            dd = {dd}
-            month = {month}
-            yyyy = {yyyy}
-            weekday = {weekday}
-            hh = {hh}
-            min = {min}
-            ampm = {ampm}
-            reason = {appointment.reason}
-            complete = {this.props.complete}
-            id = {appointment.id}
-            popout = {this.props.popout}
-            address = {this.state.address}
-            city = {this.state.city}
-            state = {this.state.state}
-            first_name = {this.state.first_name}
-            last_name = {this.state.last_name}
-            office_name = {this.state.office_name}
-          />
+        <Reminder
+          name = {appointment.name}
+          dd = {dd}
+          month = {month}
+          yyyy = {yyyy}
+          weekday = {weekday}
+          hh = {hh}
+          min = {min}
+          ampm = {ampm}
+          reason = {appointment.reason}
+          complete = {this.props.complete}
+          id = {appointment.id}
+          popout = {this.props.popout}
+          address = {address}
+          city = {city}
+          state = {state}
+          first_name = {first_name}
+          last_name = {last_name}
+          office_name = {office_name}
+          deleteAppointment = {this.props.deleteAppointment}
+        />
       )
     })
 
@@ -143,8 +161,8 @@ class RemindersContainer extends Component {
     })
   }
 
-  componentWillReceiveProps() {
-    this.makeReminders()
+  componentWillReceiveProps(nextProps) {
+    this.makeReminders(nextProps.appointments)
   }
 
   render() {

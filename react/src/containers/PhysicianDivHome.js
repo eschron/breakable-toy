@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import VisitedAppointment from '../components/VisitedAppointment';
-import Modal from '../components/Modal'
+import Modal from '../components/Modal';
+import {findDOMNode} from 'react-dom';
+import ReactTooltip from 'react-tooltip';
 
 class PhysicianDivHome extends Component {
   constructor(props) {
@@ -48,12 +50,17 @@ class PhysicianDivHome extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         appointment: body
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+     ReactTooltip.rebuild();
+    }, 100)
   }
 
   render() {
@@ -66,10 +73,12 @@ class PhysicianDivHome extends Component {
         let yyyy = date.getFullYear();
 
         let fullDate = `${mm}/${dd}/${yyyy}`
-
         return (
-          <span data-toggle="tooltip" aria-label="Hover!" >
-            <i className="fa fa-calendar-check-o"  onClick={this.popout} value={appointment.id} aria-hidden="true" title={fullDate}></i>
+          <span>
+            <a data-tip="React-tooltip" ><i className="fa fa-calendar-check-o" onClick={this.popout} value={appointment.id} aria-hidden="true"></i></a>
+            <ReactTooltip place="bottom" type="dark" effect="solid">
+              <div>{fullDate}</div>
+            </ReactTooltip>
           </span>
         )
       }
@@ -84,6 +93,7 @@ class PhysicianDivHome extends Component {
           <VisitedAppointment
             notes = {this.state.appointment.notes}
             reason = {this.state.appointment.reason}
+            date = {this.state.appointment.time}
             onClick = {this.done}
           />
         </Modal>

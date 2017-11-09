@@ -22,7 +22,7 @@ const Reminder = props => {
       </div>
       <div className='reminder-button'>
         <button value={props.id} className="complete-appointment-button" type="button" onClick={props.popout}>Complete</button>
-        <button value={props.id} className="delete-appointment-button" type="button" onClick={props.popout}>Delete</button>
+        <button value={props.id} className="delete-appointment-button" type="button" onClick={props.deleteAppointment}>Delete</button>
       </div>
     </div>
   );

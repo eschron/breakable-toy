@@ -22,23 +22,6 @@ class Api::AppointmentsController < ApplicationController
       format.html { render :new }
       format.json { render json: @appointment.errors, status: :unprocessable_entity }
     end
-
-    # client = Twilio::REST::Client.new(
-    #     ENV["TWILIO_ACCOUNT_SID"],
-    #     ENV["TWILIO_AUTH_TOKEN"]
-    #   )
-    # binding.pry
-    #   to = @phone_number
-    #   to = '+1' + to
-    #
-    #   text_body = "Hi"
-    #
-    #
-    #   client.messages.create(
-    #     to: to,
-    #     from: "+14804709660",
-    #     body: text_body
-    #   )
   end
 
   def show
@@ -53,6 +36,16 @@ class Api::AppointmentsController < ApplicationController
     end
     @appointments = Appointment.all.where(visited: false).order(time: :asc)
     render json: @appointments
+  end
+
+  def destroy
+    @appointment = Appointment.find(params[:id])
+    if @appointment.user == current_user
+      Appointment.destroy(@appointment.id)
+      @appointments = Appointment.all.where(visited: false).order(time: :asc)
+      render json: @appointments
+    end
+
   end
 
   private

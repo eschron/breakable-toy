@@ -18,19 +18,18 @@ nav ul {
 
 nav li {
   text-align: center;
-  /*flex-wrap: wrap;*/
+  padding: 10px;
 }
 
 nav li a {
     display: block;
     color: #82878C;
-    height: 50px;
+    height: 20px;
     padding: 0;
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    /*flex-wrap: wrap;*/
 }
 
 nav li:hover {
@@ -49,11 +48,4 @@ nav li a:hover {
 
 .fa.fa-user-md.fa-2x {
   color: #82878C;
-}
-
-/*.fa {
-  color: #82878C;
-  justify-content: center;
-  align-items: center;
-  vertical-align:middle;
 }

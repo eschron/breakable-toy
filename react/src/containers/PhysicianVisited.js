@@ -29,7 +29,6 @@ class PhysicianVisited extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allAppointments: body.appointmentsTrue
       });
