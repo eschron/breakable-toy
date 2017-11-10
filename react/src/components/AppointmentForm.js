@@ -12,6 +12,7 @@ const AppointmentForm = props => {
           type='textarea'
           placeholder='Reason'
           onChange={props.handleReasonChange}
+          value={props.reason}
         />
       </label>
 

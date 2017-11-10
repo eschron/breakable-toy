@@ -77,6 +77,7 @@ class FormContainer extends Component {
         handleTimeChange = {this.props.handleTimeChange}
         handlePhysicianChange = {this.handlePhysicianChange}
         handleDateChange={this.handleDateChange}
+        reason={this.state.reason}
       />
     )
   }
