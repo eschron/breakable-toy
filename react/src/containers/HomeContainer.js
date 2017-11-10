@@ -179,12 +179,14 @@ class HomeContainer extends Component {
           />
         </Modal>
         <div className="row">
-          <div className="all-phys-banner">
-            <div className="title">
-              ALL PHYSICIANS
+          <div className="medium-12 columns">
+            <div className="all-phys-banner">
+              <div className="title">
+                ALL PHYSICIANS
+              </div>
+              <VisitedContainer
+              />
             </div>
-            <VisitedContainer
-            />
           </div>
         </div>
 

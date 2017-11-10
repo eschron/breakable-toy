@@ -29,7 +29,7 @@ class Modal extends Component {
      maxWidth: 500,
      minHeight: 100,
      margin: '0 auto',
-     padding: 30,
+     padding: 20,
      zIndex: 100,
    };
 

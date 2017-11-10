@@ -78,3 +78,19 @@
   background-color: white;
   color: #af0707;
 }
+
+.complete-modal .button {
+  margin: 10px;
+  padding:10px;
+  background-color: #fff;
+  border: 1px solid #A5ABA8;
+  color: #A5ABA8;
+  border-radius: 10px;
+}
+
+.complete-modal .button:hover {
+  // background-color: #5DBEB8;
+  border: 1px solid #5DBEB8;
+  background-color: #fff;
+  color: #A5ABA8;
+}

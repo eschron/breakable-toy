@@ -49,3 +49,10 @@ nav li a:hover {
 .fa.fa-user-md.fa-2x {
   color: #82878C;
 }
+
+.logout {
+  position:absolute;
+  top:570px;
+  left:0;
+  width:100%;
+}

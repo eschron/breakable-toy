@@ -71,7 +71,6 @@ class PhysicianContainer extends Component {
   }
 
   render() {
-
     let buttonDiv;
     let buttonValue = "Add a new physcian"
     if (this.state.addPhysician == true) {
@@ -95,10 +94,18 @@ class PhysicianContainer extends Component {
     }
 
     return (
-      <div className='all-physicians'>
-        <PhysiciansContainer
-          allPhysicians = {this.state.allPhysicians}
-        />
+      <div className='all-physicians-page'>
+        <div className="row">  
+          <div className="medium-6 columns">
+            <PhysiciansContainer
+              allPhysicians = {this.state.allPhysicians}
+            />
+          </div>
+          <div className="medium-6 columns">
+            {buttonDiv}
+            {addPhysicianDiv}
+          </div>
+        </div>
       </div>
     );
   }
