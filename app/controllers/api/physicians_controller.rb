@@ -21,11 +21,13 @@ class Api::PhysiciansController < ApplicationController
 
     if @alreadyExists.length > 0
       PhysicianList.create!(user: current_user, physician: @alreadyExists)
-      redirect_to physicians_path
+      @physicians = current_user.physicians
+      render json: @physicians
     else
       if @physician.save
         PhysicianList.create!(user: current_user, physician: @physician)
-        redirect_to physicians_path
+        @physicians = current_user.physicians
+        render json: @physicians
       end
     end
   end

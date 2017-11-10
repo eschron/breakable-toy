@@ -15,5 +15,9 @@
 }
 
 .login-content {
+  text-align: center;
+}
 
+.welcome {
+  font-size: 2em;
 }

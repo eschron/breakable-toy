@@ -91,6 +91,7 @@ class PhysicianDivHome extends Component {
           onClose={this.done}
           complete={this.done}>
           <VisitedAppointment
+            key = {this.state.appointment.id}
             notes = {this.state.appointment.notes}
             reason = {this.state.appointment.reason}
             date = {this.state.appointment.time}

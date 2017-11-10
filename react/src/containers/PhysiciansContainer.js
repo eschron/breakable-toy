@@ -12,6 +12,7 @@ class PhysiciansContainer extends Component {
     let allPhysicians = this.props.allPhysicians.map(physician => {
       return (
         <Physician
+          key = {physician.id}
           first_name = {physician.first_name}
           last_name = {physician.last_name}
           office_name = {physician.office_name}
