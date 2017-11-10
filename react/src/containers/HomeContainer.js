@@ -182,7 +182,7 @@ class HomeContainer extends Component {
           <div className="medium-12 columns">
             <div className="all-phys-banner">
               <div className="title">
-                ALL PHYSICIANS
+                ALL VISITS
               </div>
               <VisitedContainer
               />

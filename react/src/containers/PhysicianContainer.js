@@ -95,15 +95,19 @@ class PhysicianContainer extends Component {
 
     return (
       <div className='all-physicians-page'>
-        <div className="row">  
+        <div className='physician-page-banner'>ALL PHYSICIANS</div>
+        <div className="row">
           <div className="medium-6 columns">
             <PhysiciansContainer
               allPhysicians = {this.state.allPhysicians}
             />
           </div>
           <div className="medium-6 columns">
-            {buttonDiv}
-            {addPhysicianDiv}
+            <div className="physicianForm">
+              <PhysicianFormContainer
+                handleNewPhysician = {this.handleNewPhysician}
+              />
+            </div>
           </div>
         </div>
       </div>

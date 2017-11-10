@@ -4,6 +4,8 @@
   background-color: #F1F5F7;
   height: 430px;
   overflow: scroll;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .05);
 }
 
 .title {

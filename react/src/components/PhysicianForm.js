@@ -6,7 +6,7 @@ const PhysicianForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='physician-form' onSubmit={handleSubmit}>
       <label className="firstName">
         <input
           className="physician-inputs"

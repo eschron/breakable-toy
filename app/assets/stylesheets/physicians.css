@@ -1,3 +1,12 @@
+.physician-page-banner {
+  background-color: #fff;
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  padding-left:15px;
+}
+
 .physicianPage {
   position: relative;
   width: 500px;
@@ -12,10 +21,10 @@
 
 .physicianForm {
   width: 100%;
-  background-color: blue;
-  max-height: 500px;
+  max-height: 530px;
   overflow-y: scroll;
   padding: 10px;
+  text-align: center;
 }
 
 .physician-inputs {
@@ -33,6 +42,8 @@
 .all-physicians {
   height: 100%;
   width: 100%;
+  max-height: 530px;
+  overflow-y: scroll;
 }
 
 .physician {
@@ -44,4 +55,22 @@
 .physician p {
   margin: 0;
   background-color: #f1f1f1;
+}
+
+.physician-form .button {
+  margin: 10px;
+  padding:10px;
+  padding-right: 25px;
+  padding-left: 25px;
+  background-color: #fff;
+  border: 1px solid #A5ABA8;
+  color: #A5ABA8;
+  border-radius: 10px;
+}
+
+.physician-form .button:hover {
+  // background-color: #5DBEB8;
+  border: 1px solid #5DBEB8;
+  background-color: #fff;
+  color: #A5ABA8;
 }
