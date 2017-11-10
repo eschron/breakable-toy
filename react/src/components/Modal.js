@@ -31,6 +31,7 @@ class Modal extends Component {
      margin: '0 auto',
      padding: 20,
      zIndex: 100,
+     marginTop: 150,
    };
 
    return (

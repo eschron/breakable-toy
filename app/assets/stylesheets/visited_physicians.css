@@ -78,3 +78,11 @@
 .modal {
   text-align: center;
 }
+
+.modal .notes-modal {
+  white-space: normal;
+}
+
+.modal .reason-modal {
+  white-space: normal;
+}

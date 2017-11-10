@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 const VisitedAppointment = props => {
   return (
     <div>
-      <div>Reason: {props.reason}</div>
-      <div>Notes: {props.notes}</div>
+      <div className='reason-modal'><p>Reason: {props.reason}</p></div>
+      <div className='notes-modal'><p>Notes: {props.notes}</p></div>
       <div>
-      <button className='visited-appt-button' onClick={props.onClick}>
-        Close
-      </button>
+        <button className='visited-appt-button' onClick={props.onClick}>
+          Close
+        </button>
       </div>
     </div>
   )
