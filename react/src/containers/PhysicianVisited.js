@@ -29,7 +29,6 @@ class PhysicianVisited extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allAppointments: body.appointmentsTrue
       });
@@ -74,7 +73,6 @@ class PhysicianVisited extends Component {
     if (this.state.allPhysicians != null) {
        allPhysicians = this.state.allPhysicians
     }
-
     let physicianDivs = this.state.allPhysicians.map(physician => {
       return (
         <div className = 'all-physician-blocks'>

@@ -21,6 +21,7 @@ class HomeContainer extends Component {
     this.complete = this.complete.bind(this);
     this.popout = this.popout.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
+    this.deleteAppointment = this.deleteAppointment.bind(this);
   }
 
   getAppointments() {
@@ -39,7 +40,6 @@ class HomeContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allAppointments: body.appointmentsFalse
       });
@@ -68,6 +68,23 @@ class HomeContainer extends Component {
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  deleteAppointment(event) {
+    event.preventDefault();
+    let id = parseInt(event.target.value);
+    fetch(`/api/appointments/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(body => {
+      console.log(body)
+      this.setState({
+        allAppointments: body
+      });
+    })
   }
 
   componentDidMount() {
@@ -116,7 +133,6 @@ class HomeContainer extends Component {
   complete(event){
     event.preventDefault();
     let appointmentID = this.state.clickedAppointment
-    // debugger
     let updatedAppt = {visited: true, notes: this.state.notes}
     fetch(`/api/appointments/${appointmentID}`, {
       credentials: 'same-origin',
@@ -153,24 +169,25 @@ class HomeContainer extends Component {
     if (this.state.allAppointments != null) {
        allAppointments = this.state.allAppointments
     }
-
     return (
       <div className='react'>
+        <Modal show={this.state.popup}
+          onClose={this.complete}>
+          <PoppedOutCompleteAppointment
+            complete={this.complete}
+            handleNotesChange = {this.handleNotesChange}
+          />
+        </Modal>
         <div className="row">
-          <div className="all-phys-banner">
-            <div className="title">
-              ALL PHYSICIANS
+          <div className="medium-12 columns">
+            <div className="all-phys-banner">
+              <div className="title">
+                ALL VISITS
+              </div>
+              <VisitedContainer
+              />
             </div>
-            <VisitedContainer
-            />
           </div>
-          <Modal show={this.state.popup}
-            onClose={this.complete}>
-            <PoppedOutCompleteAppointment
-              complete={this.complete}
-              handleNotesChange = {this.handleNotesChange}
-            />
-          </Modal>
         </div>
 
         <div className="row">
@@ -184,6 +201,7 @@ class HomeContainer extends Component {
                 physicians={allPhysicians}
                 complete={this.complete}
                 popout={this.popout}
+                deleteAppointment={this.deleteAppointment}
               />
             </div>
           </div>

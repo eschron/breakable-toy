@@ -1,3 +1,13 @@
+.physician-page-banner {
+  background-color: #fff;
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  padding-left:15px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .05);
+}
+
 .physicianPage {
   position: relative;
   width: 500px;
@@ -11,29 +21,82 @@
 }
 
 .physicianForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  margin-top: 10px;
   width: 100%;
-  background-color: blue;
-  max-height: 300px;
+  max-height: 530px;
   overflow-y: scroll;
+  /*padding: 10px;*/
+  text-align: center;
 }
 
-.allPhysicians {
+.physician-inputs {
+  border: 1px solid #A5ABA8;
+  width: 80%;
+  margin: 10px;
+  height: 38px;
+  background: none;
+  border-radius: 5px;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #fff;
+}
+
+.all-physicians {
+  margin-top: 10px;
   height: 100%;
   width: 100%;
-  background-color: pink
+  max-height: 530px;
+  overflow-y: scroll;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .05);
 }
 
-/*.physician {
+.physician {
   padding: 10px;
-  margin: 5px;
-  background-color: #f1f1f1;
-}*/
+  margin-top: 5px;
+  /*margin-bottom: 5px;*/
+  background-color: #fff;
+}
 
-/*.physician p {
+.physician p {
   margin: 0;
   background-color: #f1f1f1;
-}*/
+}
+
+.physician-form .button {
+  margin: 10px;
+  padding:10px;
+  padding-right: 25px;
+  padding-left: 25px;
+  background-color: #fff;
+  border: 1px solid #A5ABA8;
+  color: #A5ABA8;
+  border-radius: 10px;
+}
+
+.physician-form .button:hover {
+  border: 1px solid #5DBEB8;
+  background-color: #fff;
+  color: #A5ABA8;
+}
+
+.physician-specialty {
+  font-size: 1em;
+}
+.physician-phone_number {
+  font-size: .8em;
+  color: #A5ABA8;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.physician-office_name {
+  font-size: .8em;
+  color: #A5ABA8;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.physician-address {
+  font-size: .8em;
+  color: #A5ABA8;
+  padding-left: 5px;
+  padding-right: 5px;
+}

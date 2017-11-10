@@ -8,7 +8,6 @@ class PhysicianContainer extends Component {
     this.state = {
       allPhysicians: [],
       addPhysician: false,
-      current_user: null
     };
     this.getPhysicians = this.getPhysicians.bind(this)
     this.handleNewPhysician = this.handleNewPhysician.bind(this)
@@ -72,7 +71,6 @@ class PhysicianContainer extends Component {
   }
 
   render() {
-
     let buttonDiv;
     let buttonValue = "Add a new physcian"
     if (this.state.addPhysician == true) {
@@ -96,16 +94,21 @@ class PhysicianContainer extends Component {
     }
 
     return (
-      <div className="physicianPage">
-        <div className="buttonDiv">
-          {buttonDiv}
-        </div>
-        {addPhysicianDiv}
-        <div className="allPhysicians">
-          <PhysiciansContainer
-            current_user = {this.state.current_user}
-            allPhysicians = {this.state.allPhysicians}
-          />
+      <div className='all-physicians-page'>
+        <div className='physician-page-banner'>ALL PHYSICIANS</div>
+        <div className="row">
+          <div className="medium-6 columns">
+            <PhysiciansContainer
+              allPhysicians = {this.state.allPhysicians}
+            />
+          </div>
+          <div className="medium-6 columns">
+            <div className="physicianForm">
+              <PhysicianFormContainer
+                handleNewPhysician = {this.handleNewPhysician}
+              />
+            </div>
+          </div>
         </div>
       </div>
     );

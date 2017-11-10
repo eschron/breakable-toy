@@ -9,8 +9,8 @@ const SelectTile = props => {
 
   return(
     <label>
-      <div>Physician</div>
-      <select onChange={props.handlePhysicianChange}>
+      <select className='select' onChange={props.handlePhysicianChange}>
+        <option value="" selected disabled>Physician</option>
         {allPhysiciansSelect}
       </select>
     </label>

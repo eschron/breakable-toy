@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const PhysicianForm = props => {
   return (
-    <form onSubmit={props.complete}>
+    <form className='complete-modal' onSubmit={props.complete}>
       <label className="notes">
         <div>Notes:
           <input

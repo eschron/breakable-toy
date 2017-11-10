@@ -1,3 +1,13 @@
+.reminders-container {
+  margin-top: 4px;
+  position: relative;
+  background-color: #F1F5F7;
+  height: 430px;
+  overflow: scroll;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .05);
+}
+
 .reminder {
   padding: 10px;
   margin-top: 2px;
@@ -7,25 +17,50 @@
 }
 
 .date {
+  height: 100%;
+  color: #2F373E;
+  text-align: center;
   width: 15%;
   display: inline-block;
   padding: 5px;
+}
+
+.day {
+  font-size: 2em;
+}
+.weekday {
+  color: #D2CECB;
+}
+.month {
+  color: #A5ABA8;
 }
 
 .time {
-  width: 15%;
+  height: 100%;
+  vertical-align: top;
+  text-align: center;
+  width: 17%;
   display: inline-block;
-  padding: 10px;
+  margin-top: 43px;
+  color: #2F373E;
+  font-size: .8em;
 }
 
 .details {
-  padding: 5px;
-  width: 55%;
+  /*padding: 5px;*/
+  width: 45%;
   display: inline-block;
+  vertical-align: top;
+  margin-top: 20px;
+}
+
+.doctor-details {
+  font-size: .8em;
+  color: #A5ABA8;
 }
 
 .reminder-button {
-  padding: 5px;
+  padding: 10px;
   width: 15%;
   display: inline-block;
 }
@@ -33,4 +68,39 @@
 .complete-appointment-button {
   margin: 0;
   padding: 3px;
+  position: relative;
+  top: 10px;
+  left: 30px;
+  /*right: 590px;*/
+  font-size: .8em;
+  background-color: white;
+  color: #4B9C97;
+}
+
+.delete-appointment-button {
+  margin: 0;
+  padding: 3px;
+  position: relative;
+  top: 10px;
+  left: 50px;
+  /*right: 590px;*/
+  font-size: .8em;
+  background-color: white;
+  color: #af0707;
+}
+
+.complete-modal .button {
+  margin: 10px;
+  padding:10px;
+  background-color: #fff;
+  border: 1px solid #A5ABA8;
+  color: #A5ABA8;
+  border-radius: 10px;
+}
+
+.complete-modal .button:hover {
+  // background-color: #5DBEB8;
+  border: 1px solid #5DBEB8;
+  background-color: #fff;
+  color: #A5ABA8;
 }

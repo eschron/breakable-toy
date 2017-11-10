@@ -1,0 +1,66 @@
+.appointment-form {
+  background-color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.appointment-inputs {
+  border: 1px solid #A5ABA8;
+  width: 80%;
+  margin: 10px;
+  height: 38px;
+  background: none;
+  border-radius: 5px;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #fff;
+}
+
+.form-container {
+  margin-top: 4px;
+  height: 430px;
+  overflow: scroll;
+  // text-align: center;
+  min-width: 240px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .05);
+}
+
+.select{
+  border: 1px solid #A5ABA8;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 80%;
+}
+
+.form-control input[type="text"]{
+  border: 2px solid #A5ABA8;
+  border-radius: 10px;
+}
+
+.appointment-form .button {
+  margin: 10px;
+  padding:10px;
+  background-color: #fff;
+  border: 1px solid #A5ABA8;
+  color: #A5ABA8;
+  border-radius: 10px;
+}
+
+.appointment-form .button:hover {
+  // background-color: #5DBEB8;
+  border: 1px solid #5DBEB8;
+  background-color: #fff;
+  color: #A5ABA8;
+}
+
+.rdt .form-control {
+  border: 1px solid #A5ABA8;
+  border-radius: 5px;
+  width: 80%;
+}
+
+.rdtPicker {
+  display: flex;
+  justify-content: center;
+}

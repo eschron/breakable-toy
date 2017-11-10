@@ -14,20 +14,22 @@
   <body>
     <% if current_user  %>
       <nav>
+        <div class='logo'>MyMed</div>
         <ul>
-          <!-- <% if current_user %> -->
-            <div class='logo'>MyMed</div>
-            <li><%= link_to "Logout", logout_path %></li>
-            <li class="home-nav"><i class="fa fa-home fa-2x" aria-hidden="true"></i><%= link_to "Home", root_path %></li>
-            <li class="physicians-nav"><i class="fa fa-user-md fa-2x" aria-hidden="true"></i><%= link_to "Physicians", physicians_path %></li>
-          <!-- <% end %> -->
+          <li class="home-nav"><i class="fa fa-home fa-2x" aria-hidden="true"></i><%= link_to "Home", root_path %></li>
+          <li class="physicians-nav"><i class="fa fa-user-md fa-2x" aria-hidden="true"></i><%= link_to "Physicians", physicians_path %></li>
+          <li class="logout"><%= link_to "Logout", logout_path %></li>
         </ul>
       </nav>
-      <topNav>
-      </topNav>
+      <topNav></topNav>
       <div id="app"> </div>
     <% else %>
-      <%= link_to "Sign in with Google", "/auth/google" %>
+      <div class='login'>
+        <div class='login-topnav'></div>
+        <div class='login-content'>
+          <%= link_to "Sign in with Google", "/auth/google" %>
+        </div>
+      </div>
     <% end %>
     <%= yield %>
     <%= javascript_include_tag "application" %>

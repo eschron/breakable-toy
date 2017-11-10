@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :update]
+  skip_before_action :verify_authenticity_token
 
   def index
     @appointmentsFalse = Appointment.all.where(visited: false).order(time: :asc)
@@ -11,6 +11,7 @@ class Api::AppointmentsController < ApplicationController
   def create
     @reason = params[:reason]
     @date = params[:date]
+    @phone_number = params[:number]
     @physician = Physician.find_by first_name: params[:physicianName]
     @appointment = Appointment.new(reason: @reason, time: @date, physician: @physician, user: current_user)
 
@@ -23,10 +24,10 @@ class Api::AppointmentsController < ApplicationController
     end
   end
 
-  # def show
-  #   @appointment = Appointment.find(params[:id])
-  #   render json: @appointment
-  # end
+  def show
+    @appointment = Appointment.find(params[:id])
+    render json: @appointment
+  end
 
   def update
     @appointment = Appointment.find(params[:id])
@@ -35,6 +36,16 @@ class Api::AppointmentsController < ApplicationController
     end
     @appointments = Appointment.all.where(visited: false).order(time: :asc)
     render json: @appointments
+  end
+
+  def destroy
+    @appointment = Appointment.find(params[:id])
+    if @appointment.user == current_user
+      Appointment.destroy(@appointment.id)
+      @appointments = Appointment.all.where(visited: false).order(time: :asc)
+      render json: @appointments
+    end
+
   end
 
   private
@@ -50,6 +61,6 @@ class Api::AppointmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_params
-    params.require(:appointment).permit(:reason, :date, :physicianName, :visited, :notes)
+    params.require(:appointment).permit(:reason, :date, :physicianName, :visited, :notes, :number)
   end
 end

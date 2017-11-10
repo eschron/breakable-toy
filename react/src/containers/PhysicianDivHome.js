@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import VisitedAppointment from '../components/VisitedAppointment';
-import Modal from '../components/Modal'
+import Modal from '../components/Modal';
+import {findDOMNode} from 'react-dom';
+import ReactTooltip from 'react-tooltip';
 
 class PhysicianDivHome extends Component {
   constructor(props) {
@@ -8,7 +10,7 @@ class PhysicianDivHome extends Component {
     this.state = {
       popup: false,
       clickedAppointment: null,
-      appointment: null
+      appointment: ''
     }
     this.popout = this.popout.bind(this);
     this.done = this.done.bind(this);
@@ -16,46 +18,49 @@ class PhysicianDivHome extends Component {
   }
 
   popout(event) {
-    debugger
     event.preventDefault();
+    let clicked = parseInt(event.target.attributes[1].value);
     this.setState({
-      clickedAppointment: event.target.value,
+      clickedAppointment: parseInt(event.target.attributes[1].value),
       popup: true
     });
-
-    console.log("SET STATE")
-    console.log(this.state.clickedAppointment)
-    this.getAppointmentObject();
+    this.getAppointmentObject(clicked);
   }
 
   done(event) {
+    event.preventDefault();
     this.setState({
       popup: false
     });
   }
 
-  getAppointmentObject() {
-    // fetch(`/api/appointments/${this.state.clickedAppointment}`, {
-    //   credentials: 'same-origin',
-    //   headers: { 'Content-Type': 'application/json' }
-    // })
-    // .then(response => {
-    //   if (response.ok) {
-    //     return response;
-    //   } else {
-    //     let errorMessage = `${response.status} (${response.statusText})`,
-    //         error = new Error(errorMessage);
-    //     throw(error);
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(body => {
-    //   console.log(body)
-    //   this.setState({
-    //     appointment: body
-    //   });
-    // })
-    // .catch(error => console.error(`Error in fetch: ${error.message}`));
+  getAppointmentObject(clicked) {
+    fetch(`/api/appointments/${clicked}`, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({
+        appointment: body
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+     ReactTooltip.rebuild();
+    }, 100)
   }
 
   render() {
@@ -68,10 +73,12 @@ class PhysicianDivHome extends Component {
         let yyyy = date.getFullYear();
 
         let fullDate = `${mm}/${dd}/${yyyy}`
-
         return (
-          <span data-toggle="tooltip" aria-label="Hover!" >
-            <i className="fa fa-calendar-check-o"  onClick={this.popout} value={appointment.id} aria-hidden="true" title={fullDate}></i>
+          <span>
+            <a data-tip="React-tooltip" ><i className="fa fa-calendar-check-o" onClick={this.popout} value={appointment.id} aria-hidden="true"></i></a>
+            <ReactTooltip place="bottom" type="dark" effect="solid">
+              {fullDate}
+            </ReactTooltip>
           </span>
         )
       }
@@ -84,13 +91,17 @@ class PhysicianDivHome extends Component {
           onClose={this.done}
           complete={this.done}>
           <VisitedAppointment
-            // notes = {this.state.appointment.notes}
-            // date = {fullDate}
-            // reason = {this.state.appointment.reason}
+            notes = {this.state.appointment.notes}
+            reason = {this.state.appointment.reason}
+            date = {this.state.appointment.time}
+            onClick = {this.done}
           />
         </Modal>
-        Dr. {this.props.physician.first_name} {this.props.physician.last_name}
-        {visitedAppointments}
+        <div className='physician-name'>Dr. {this.props.physician.first_name} {this.props.physician.last_name}</div>
+        <div className='physician-specialty'>{this.props.physician.specialty}</div>
+        <div className="visited-appointments-icons">
+          {visitedAppointments}
+        </div>
       </div>
     )
   }

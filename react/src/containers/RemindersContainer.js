@@ -5,12 +5,53 @@ class RemindersContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      allAppointments: [],
+      address: '',
+      city: '',
+      state: '',
+      first_name: '',
+      last_name: '',
+      office_name: ''
+    }
+    this.getPhysician = this.getPhysician.bind(this);
+    this.makeReminders = this.makeReminders.bind(this);
+  }
+
+  getPhysician(appointment) {
+    for (let i = 0; i < this.props.physicians.length; i++) {
+      if (this.props.physicians[i].id == appointment.physician_id) {
+        this.setState({
+          address: this.props.physicians[i].address,
+          city: this.props.physicians[i].city,
+          state: this.props.physicians[i].state,
+          first_name: this.props.physicians[i].first_name,
+          last_name: this.props.physicians[i].last_name,
+          office_name: this.props.physicians[i].office_name
+        })
+      }
     }
   }
 
+  makeReminders(appointments) {
+    let allAppointments = appointments.map(appointment => {
 
-  render() {
-    let allAppointments = this.props.appointments.map(appointment => {
+      let address;
+      let city;
+      let state;
+      let first_name;
+      let last_name;
+      let office_name;
+
+      for (let i = 0; i < this.props.physicians.length; i++) {
+        if (this.props.physicians[i].id == appointment.physician_id) {
+          address = this.props.physicians[i].address
+          city = this.props.physicians[i].city
+          state = this.props.physicians[i].state
+          first_name = this.props.physicians[i].first_name
+          last_name = this.props.physicians[i].last_name
+          office_name = this.props.physicians[i].office_name
+        }
+      }
 
       let date = new Date(appointment.time);
       let dd = date.getDate();
@@ -53,65 +94,81 @@ class RemindersContainer extends Component {
         weekday = 'SAT';
       }
 
-      if (mm == 1) {
+      if (mm == 0) {
         month = 'January';
       }
-      else if (mm == 2) {
+      else if (mm == 1) {
         month = 'February';
       }
-      else if (mm == 3) {
+      else if (mm == 2) {
         month = 'March';
       }
-      else if (mm == 4) {
+      else if (mm == 3) {
         month = 'April';
       }
-      else if (mm == 5) {
+      else if (mm == 4) {
         month = 'May';
       }
-      else if (mm == 6) {
+      else if (mm == 5) {
         month = 'June';
       }
-      else if (mm == 7) {
+      else if (mm == 6) {
         month = 'July';
       }
-      else if (mm == 8) {
+      else if (mm == 7) {
         month = 'August';
       }
-      else if (mm == 9) {
+      else if (mm == 8) {
         month = 'September';
       }
-      else if (mm == 10) {
+      else if (mm == 9) {
         month = 'October';
       }
-      else if (mm == 11) {
+      else if (mm == 10) {
         month = 'November';
       }
-      else if (mm == 12) {
+      else if (mm == 11) {
         month = 'December';
       }
 
       return (
-          <Reminder
-            name = {appointment.name}
-            dd = {dd}
-            month = {month}
-            yyyy = {yyyy}
-            weekday = {weekday}
-            hh = {hh}
-            min = {min}
-            ampm = {ampm}
-            reason = {appointment.reason}
-            complete = {this.props.complete}
-            id = {appointment.id}
-            popout = {this.props.popout}
-          />
+        <Reminder
+          name = {appointment.name}
+          dd = {dd}
+          month = {month}
+          yyyy = {yyyy}
+          weekday = {weekday}
+          hh = {hh}
+          min = {min}
+          ampm = {ampm}
+          reason = {appointment.reason}
+          complete = {this.props.complete}
+          id = {appointment.id}
+          popout = {this.props.popout}
+          address = {address}
+          city = {city}
+          state = {state}
+          first_name = {first_name}
+          last_name = {last_name}
+          office_name = {office_name}
+          deleteAppointment = {this.props.deleteAppointment}
+        />
       )
     })
 
+    this.setState({
+      allAppointments: allAppointments
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.makeReminders(nextProps.appointments)
+  }
+
+  render() {
     return (
-      // <div className="allAppointments">
       <div>
-        {allAppointments}
+        {this.state.allAppointments}
       </div>
     )
   }
