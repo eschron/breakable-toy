@@ -31,7 +31,7 @@ class PhysicianContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({
-        allPhysicians: body,
+        allPhysicians: body.allPhysicians,
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

@@ -53,7 +53,7 @@ class PhysicianVisited extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({
-        allPhysicians: body
+        allPhysicians: body.visitedPhysicians
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -77,7 +77,7 @@ class PhysicianVisited extends Component {
       return (
         <div className = 'all-physician-blocks'>
           <PhysicianDivHome
-            physician = {physician}
+            physician = {physician[0]}
             allAppointments = {allAppointments}
           />
         </div>

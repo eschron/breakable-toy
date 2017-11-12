@@ -2,8 +2,13 @@ class Api::PhysiciansController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :index]
 
   def index
+    @visitedPhysicians = []
     @physicians = current_user.physicians
-    render json: @physicians
+    idArray = current_user.physicians_with_appointments.uniq.pluck(:id)
+    idArray.each do |id|
+      @visitedPhysicians << Physician.where(id: id)
+    end
+    render json: {visitedPhysicians: @visitedPhysicians, allPhysicians: @physicians}
   end
 
   def create
