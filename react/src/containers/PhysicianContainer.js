@@ -15,7 +15,7 @@ class PhysicianContainer extends Component {
   }
 
   getPhysicians() {
-    fetch(`/api/physicians.json`, {
+    fetch(`/api/v1/physicians.json`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -31,14 +31,14 @@ class PhysicianContainer extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({
-        allPhysicians: body,
+        allPhysicians: body.allPhysicians,
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleNewPhysician(formPayload) {
-    fetch('/api/physicians', {
+    fetch('/api/v1/physicians', {
       credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify(formPayload),

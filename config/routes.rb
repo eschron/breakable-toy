@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :appointments, only: [:show]
 
   namespace :api do
-    resources :appointments, only: [:create, :index, :update, :show, :destroy]
-    resources :physicians, only: [:create, :index]
+    namespace :v1 do
+      resources :appointments, only: [:create, :index, :update, :show, :destroy]
+      resources :physicians, only: [:create, :index]
+    end
   end
 
 end

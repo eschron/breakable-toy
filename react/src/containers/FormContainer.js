@@ -5,6 +5,7 @@ class FormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      reasonErrors: '',
       reason: '',
       physicianName: null,
       date: new Date(),
@@ -21,6 +22,7 @@ class FormContainer extends Component {
 
   handleClearForm() {
     this.setState({
+      reasonErrors: '',
       reason: '',
       physicianName: null,
       date: new Date(),
@@ -31,7 +33,7 @@ class FormContainer extends Component {
   handleNew(event){
     event.preventDefault();
     if (this.state.reason === null) {
-      this.setState({ratingErrors: 'Please select a reason.'})
+      this.setState({reasonErrors: 'Please specify a reason.'})
     }
     else {
       let formPayload = {
@@ -67,18 +69,26 @@ class FormContainer extends Component {
   }
 
   render() {
+    let errorDiv;
+    if (this.state.reasonErrors !== '') {
+      errorDiv = <p>{this.state.reasonErrors}</p>
+    }
+
     return (
-      <AppointmentForm
-        allPhysicians = {this.props.allPhysicians}
-        handleClearForm = {this.handleClearForm}
-        handleNew = {this.handleNew}
-        handleReasonChange = {this.handleReasonChange}
-        handleNumberChange = {this.handleNumberChange}
-        handleTimeChange = {this.props.handleTimeChange}
-        handlePhysicianChange = {this.handlePhysicianChange}
-        handleDateChange={this.handleDateChange}
-        reason={this.state.reason}
-      />
+      <div>
+        {errorDiv}
+        <AppointmentForm
+          allPhysicians = {this.props.allPhysicians}
+          handleClearForm = {this.handleClearForm}
+          handleNew = {this.handleNew}
+          handleReasonChange = {this.handleReasonChange}
+          handleNumberChange = {this.handleNumberChange}
+          handleTimeChange = {this.props.handleTimeChange}
+          handlePhysicianChange = {this.handlePhysicianChange}
+          handleDateChange={this.handleDateChange}
+          reason={this.state.reason}
+        />
+      </div>
     )
   }
 }

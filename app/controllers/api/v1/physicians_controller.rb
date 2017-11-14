@@ -1,9 +1,14 @@
-class Api::PhysiciansController < ApplicationController
+class Api::V1::PhysiciansController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :index]
 
   def index
+    @visitedPhysicians = []
     @physicians = current_user.physicians
-    render json: @physicians
+    idArray = current_user.physicians_with_appointments.uniq.pluck(:id)
+    idArray.each do |id|
+      @visitedPhysicians << Physician.where(id: id)
+    end
+    render json: {visitedPhysicians: @visitedPhysicians, allPhysicians: @physicians}
   end
 
   def create
@@ -21,11 +26,13 @@ class Api::PhysiciansController < ApplicationController
 
     if @alreadyExists.length > 0
       PhysicianList.create!(user: current_user, physician: @alreadyExists)
-      redirect_to physicians_path
+      @physicians = current_user.physicians
+      render json: @physicians
     else
       if @physician.save
         PhysicianList.create!(user: current_user, physician: @physician)
-        redirect_to physicians_path
+        @physicians = current_user.physicians
+        render json: @physicians
       end
     end
   end

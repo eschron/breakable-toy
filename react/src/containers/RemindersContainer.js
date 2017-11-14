@@ -133,6 +133,7 @@ class RemindersContainer extends Component {
 
       return (
         <Reminder
+          key = {appointment.id}
           name = {appointment.name}
           dd = {dd}
           month = {month}
