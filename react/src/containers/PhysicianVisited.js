@@ -14,7 +14,7 @@ class PhysicianVisited extends Component {
   }
 
   getUserAppointment() {
-    fetch(`/api/appointments.json`, {
+    fetch(`/api/v1/appointments.json`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -37,7 +37,7 @@ class PhysicianVisited extends Component {
   }
 
   getPhysicians() {
-    fetch(`/api/physicians.json`, {
+    fetch(`/api/v1/physicians.json`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })

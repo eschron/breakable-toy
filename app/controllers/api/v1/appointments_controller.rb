@@ -1,4 +1,4 @@
-class Api::AppointmentsController < ApplicationController
+class Api::V1::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
@@ -15,13 +15,23 @@ class Api::AppointmentsController < ApplicationController
     @physician = Physician.find_by first_name: params[:physicianName]
     @appointment = Appointment.new(reason: @reason, time: @date, physician: @physician, user: current_user)
 
-    if @appointment.save
+    @sameTime = Appointment.all.where(visited: false).where(time: @date)
+    if (@sameTime.length > 0)
+      binding.pry
       @appointments = Appointment.all.where(visited: false).order(time: :asc)
+      flash[:notice] = 'Testttttt'
       render json: @appointments
     else
-      format.html { render :new }
-      format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      if @appointment.save
+        @appointments = Appointment.all.where(visited: false).order(time: :asc)
+        render json: @appointments
+      else
+        format.html { render :new }
+        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      end
     end
+
+
   end
 
   def show

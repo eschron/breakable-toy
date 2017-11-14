@@ -35,7 +35,7 @@ class PhysicianDivHome extends Component {
   }
 
   getAppointmentObject(clicked) {
-    fetch(`/api/appointments/${clicked}`, {
+    fetch(`/api/v1/appointments/${clicked}`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })

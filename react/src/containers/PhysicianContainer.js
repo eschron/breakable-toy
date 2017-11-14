@@ -15,7 +15,7 @@ class PhysicianContainer extends Component {
   }
 
   getPhysicians() {
-    fetch(`/api/physicians.json`, {
+    fetch(`/api/v1/physicians.json`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -38,7 +38,7 @@ class PhysicianContainer extends Component {
   }
 
   handleNewPhysician(formPayload) {
-    fetch('/api/physicians', {
+    fetch('/api/v1/physicians', {
       credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify(formPayload),

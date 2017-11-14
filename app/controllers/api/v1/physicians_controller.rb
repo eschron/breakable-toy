@@ -1,4 +1,4 @@
-class Api::PhysiciansController < ApplicationController
+class Api::V1::PhysiciansController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :index]
 
   def index

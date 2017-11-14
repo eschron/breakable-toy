@@ -13,7 +13,7 @@ class HomeContainer extends Component {
       allPhysicians: [],
       popup: false,
       clickedAppointment: null,
-      notes: ''
+      notes: '',
     };
     this.handleNewAppointment = this.handleNewAppointment.bind(this);
     this.getAppointments = this.getAppointments.bind(this);
@@ -25,7 +25,7 @@ class HomeContainer extends Component {
   }
 
   getAppointments() {
-    fetch(`/api/appointments.json`, {
+    fetch(`/api/v1/appointments.json`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -48,7 +48,7 @@ class HomeContainer extends Component {
   }
 
   getPhysicians() {
-    fetch(`/api/physicians.json`, {
+    fetch(`/api/v1/physicians.json`, {
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -73,14 +73,13 @@ class HomeContainer extends Component {
   deleteAppointment(event) {
     event.preventDefault();
     let id = parseInt(event.target.value);
-    fetch(`/api/appointments/${id}`, {
+    fetch(`/api/v1/appointments/${id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin'
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
       this.setState({
         allAppointments: body
       });
@@ -106,7 +105,7 @@ class HomeContainer extends Component {
 
   handleNewAppointment(formPayload) {
     event.preventDefault();
-    fetch('/api/appointments', {
+    fetch('/api/v1/appointments', {
       credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify(formPayload),
@@ -134,7 +133,7 @@ class HomeContainer extends Component {
     event.preventDefault();
     let appointmentID = this.state.clickedAppointment
     let updatedAppt = {visited: true, notes: this.state.notes}
-    fetch(`/api/appointments/${appointmentID}`, {
+    fetch(`/api/v1/appointments/${appointmentID}`, {
       credentials: 'same-origin',
       method:'PATCH',
       body: JSON.stringify(updatedAppt),
